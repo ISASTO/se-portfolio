@@ -48,6 +48,7 @@
         <div class="case-deck" data-reveal>
           <div class="case-actions">
             <a class="case-button" href="../../#work">All projects <span aria-hidden="true">←</span></a>
+            <a class="case-button" href="https://github.com/ISASTO/garmin-watchface">View source <span aria-hidden="true">↗</span></a>
           </div>
           <p>
             I could not find a Garmin face that showed only what I wanted, so I made one. It shows the time, date, and
@@ -156,37 +157,40 @@
         <section class="case-section" aria-labelledby="garmin-cadence">
           <span class="case-section-number">03 / Rendering</span>
           <div class="case-section-body">
-            <h2 id="garmin-cadence">Each value has its own update schedule.</h2>
+            <h2 id="garmin-cadence">The face redraws often, but most of the data does not.</h2>
             <p class="lead-copy">
-              The time changes every minute. The date changes once a day. Battery percentage moves slowly. I do not
-              format all three values again on every update.
+              Garmin can call the face several times after a wrist gesture. The Forerunner 955 still needs a complete
+              frame each time, but the strings behind that frame usually have not changed.
             </p>
 
             <div class="update-cadence" aria-label="Watch face data update cadences">
               <article class="cadence-item">
                 <strong>1 min</strong>
-                <span>The time is refreshed on every normal watch face update.</span>
+                <span>The time string is formatted again when the minute changes.</span>
               </article>
               <article class="cadence-item">
-                <strong>Periodic</strong>
-                <span>The battery value is refreshed less often because it changes more slowly.</span>
+                <strong>1 hour</strong>
+                <span>The date and battery are sampled and formatted on the hour.</span>
               </article>
               <article class="cadence-item">
-                <strong>1 day</strong>
-                <span>The date is rebuilt when the calendar day changes.</span>
+                <strong>Each call</strong>
+                <span>The complete frame is drawn from cached strings for reliable hardware rendering.</span>
               </article>
             </div>
 
             <p>
-              I cache the formatted strings and reuse them until their source might have changed. I also use 1-bit text
-              assets where full-color images would look the same. The draw method mostly places values prepared earlier.
+              The normal update path makes one clock query, then reuses the cached time, date, and battery strings when
+              their refresh boundary has not arrived. The bitmap fonts are hard-edged 1-bit resources, and they stay
+              loaded outside the screen-update hot path.
             </p>
 
             <div class="code-callout" aria-label="Simplified watch-face update strategy">
               <pre><code>// Simplified rendering strategy
-if (minuteChanged)  updateTime();
-if (dateChanged)    updateDate();
-if (batteryIsDue)   updateBattery();
+if (minuteChanged) formatTime();
+if (hourChanged) {
+  formatDate();
+  formatBattery();
+}
 
 draw(cachedDate, cachedTime, cachedBattery);</code></pre>
             </div>
