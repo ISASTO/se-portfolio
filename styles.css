@@ -243,7 +243,7 @@ a {
   margin: 7vh 0;
   font-size: clamp(76px, 16.4vw, 248px);
   font-weight: 900;
-  letter-spacing: -0.085em;
+  letter-spacing: -0.055em;
   line-height: 0.72;
   text-transform: uppercase;
 }
@@ -380,6 +380,18 @@ a {
 .project-visual:hover img {
   filter: saturate(1.04) contrast(1.03);
   transform: scale(1.025);
+}
+
+.project-movie .project-visual {
+  aspect-ratio: 40 / 21;
+}
+
+.project-movie .project-visual img {
+  object-fit: contain;
+}
+
+.project-movie .project-visual:hover img {
+  transform: none;
 }
 
 .project-index {
@@ -801,6 +813,18 @@ a {
   width: 100%;
   max-height: min(75vh, 900px);
   object-fit: cover;
+}
+
+.movie-sharecard {
+  aspect-ratio: 40 / 21;
+}
+
+.case-visual.movie-sharecard > img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  max-height: none;
+  object-fit: contain;
 }
 
 .case-visual figcaption {
