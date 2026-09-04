@@ -73,6 +73,19 @@ for (const file of htmlFiles) {
   const duplicateIds = ids.filter((id, index) => ids.indexOf(id) !== index);
   if (duplicateIds.length > 0) fail(file, `duplicate ids: ${[...new Set(duplicateIds)].join(", ")}`);
 
+  const samePageFragments = [...source.matchAll(/href="#([^"]+)"/g)].map((match) => match[1]);
+  for (const fragment of samePageFragments) {
+    if (!ids.includes(fragment)) fail(file, `missing same-page fragment #${fragment}`);
+  }
+
+  const images = [...source.matchAll(/<img\b[^>]*>/g)].map((match) => match[0]);
+  for (const image of images) {
+    if (!/\salt="[^"]*"/.test(image)) fail(file, "image is missing alt text");
+    if (!/\swidth="\d+"/.test(image) || !/\sheight="\d+"/.test(image)) {
+      fail(file, "image is missing explicit width or height");
+    }
+  }
+
   const targets = [...source.matchAll(/(?:href|src)="([^"]+)"/g)].map((match) => match[1]);
   for (const target of targets) {
     if (/^(?:https?:|mailto:|tel:|data:|#)/.test(target)) continue;

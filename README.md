@@ -5,7 +5,7 @@ A lightweight, hand-built portfolio for selected software engineering work.
 ## Projects
 
 - **Movie Master:** Static storefront, browser game, Cloudflare Worker API, D1 analytics, and public leaderboards.
-- **Minimal Garmin:** A focused Connect IQ watch face for the Garmin Forerunner 955.
+- **Typeface 955:** A focused Connect IQ watch face for the Garmin Forerunner 955.
 - **Bugnut:** A Next.js comic reader with an automated image-processing and publishing pipeline.
 
 ## Local preview

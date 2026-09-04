@@ -9,7 +9,6 @@
     />
     <meta name="theme-color" content="#0a0a0a" />
     <title>Movie Master | Isaac Stoltz</title>
-    <script>document.documentElement.classList.add("js")</script>
     <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../../styles.css" />
     <script src="../../script.js" defer></script>
@@ -42,7 +41,7 @@
       <header class="case-hero">
         <div class="case-kicker" data-reveal>
           <span>Case study 01</span>
-          <span>Full-stack product · 2026</span>
+          <span>Full-stack product · 2024 to present</span>
         </div>
         <h1 class="case-title long-title" data-reveal>Movie<br />Master</h1>
         <div class="case-deck" data-reveal>
@@ -51,8 +50,8 @@
             <a class="case-button" href="https://github.com/ISASTO/movie-master">View source <span aria-hidden="true">↗</span></a>
           </div>
           <p>
-            I built the website and supporting software for a real movie recommendation business. It began as a
-            simple static page. New features came later, when customers and players gave me a reason to add them.
+            I went from being Movie Master’s first Facebook Marketplace customer to building the storefront, browser
+            game, analytics, and leaderboards for his movie recommendation business.
           </p>
         </div>
       </header>
@@ -72,7 +71,7 @@
         <dl class="case-facts" data-reveal>
           <div>
             <dt>Role</dt>
-            <dd>Product design<br />Full-stack engineering</dd>
+            <dd>Webmaster + business partner<br />Full-stack engineering</dd>
           </div>
           <div>
             <dt>Core stack</dt>
@@ -83,41 +82,53 @@
             <dd>GitHub Pages<br />GitHub Actions</dd>
           </div>
           <div>
-            <dt>Product state</dt>
-            <dd>Live<br />Accepting paid orders</dd>
+            <dt>Current scope</dt>
+            <dd>Live storefront<br />2 game modes</dd>
           </div>
         </dl>
 
+        <nav class="case-toc" aria-label="Case study sections" data-reveal>
+          <span>Jump to</span>
+          <a href="#movie-problem">Origin</a>
+          <a href="#movie-decisions">Product decisions</a>
+          <a href="#movie-game">Game + leaderboards</a>
+          <a href="#movie-evolution">Iteration</a>
+          <a href="#movie-outcome">Outcome</a>
+        </nav>
+
         <section class="case-section" aria-labelledby="movie-problem">
-          <span class="case-section-number">01 / Problem</span>
+          <span class="case-section-number">01 / Origin</span>
           <div class="case-section-body">
-            <h2 id="movie-problem">Movie Master needed a home online.</h2>
+            <h2 id="movie-problem">I started as a customer.</h2>
             <p class="lead-copy">
-              Movie Master is a real person who sells personalized movie recommendations. I found his Facebook
-              Marketplace listing, bought a package, and eventually offered to build him a website.
+              I found Robert Cravens selling personalized movie recommendations on Facebook Marketplace, bought a
+              package, and kept talking with him. I was his first customer. Before long, I was helping with the brand,
+              the rules, the purchase flow, and the website.
             </p>
             <p>
-              The service already had a memorable personality. What it lacked was a clear online home. I needed to
-              explain the packages, make it easy to contact him, and keep the odd, earnest style that made the listing
-              interesting in the first place.
+              The service was memorable but scattered across listings and messages. Customers needed one place to see
+              the $5, $10, and $20 packages, understand how the recommendations worked, and contact Robert. He needed a
+              site he could point to without becoming the person who maintained it.
             </p>
             <p>
-              A conventional startup design would have missed the point. I cleaned up the structure and purchase
-              path without making Movie Master sound or look like a different business.
+              Our conversations became the product backlog. A failed QR-code handoff made the need for a site clearer.
+              Unusual customer requests turned into genre and refund rules. Mobile tests changed the navigation and
+              purchase links. Robert’s reaction when his contact information looked less prominent led me to make that
+              path much clearer.
             </p>
             <h3>What I was working with</h3>
             <ul>
               <li>Hosting had to cost almost nothing.</li>
-              <li>The owner is nontechnical, and details often changed through ordinary conversation.</li>
+              <li>Robert is nontechnical, and requirements arrived through ordinary conversation.</li>
               <li>Customers needed a straightforward experience on phones and computers.</li>
-              <li>The site had to sound like Movie Master, not a generic online service.</li>
+              <li>The site had to sound and look like Movie Master, not a generic online service.</li>
               <li>New backend features could not make the basic storefront less reliable.</li>
             </ul>
           </div>
         </section>
 
         <section class="case-section" aria-labelledby="movie-decisions">
-          <span class="case-section-number">02 / Decisions</span>
+          <span class="case-section-number">02 / Product decisions</span>
           <div class="case-section-body">
             <h2 id="movie-decisions">I kept the first version static.</h2>
             <p class="lead-copy">
@@ -130,8 +141,8 @@
                 <span>01</span>
                 <h3>Make it feel like Movie Master</h3>
                 <p>
-                  His language, testimonials, and visual taste are part of the product. I made the pages easier to use
-                  without rewriting the business into something bland.
+                  Robert wanted the site colorful, inviting, theatrical, and impossible to miss. I organized the
+                  content without sanding away the style that made the business recognizable.
                 </p>
               </article>
               <article class="decision-card">
@@ -166,11 +177,16 @@
               <li>Worker API <small>Validation + routes</small></li>
               <li>Cloudflare D1 <small>Shared state</small></li>
             </ol>
+            <p>
+              This let the architecture grow in one direction at a time. The storefront still does not depend on the
+              Worker. If analytics is unavailable, the visitor count may miss an event, but the page and game keep
+              working.
+            </p>
           </div>
         </section>
 
         <section class="case-section" aria-labelledby="movie-game">
-          <span class="case-section-number">03 / Game</span>
+          <span class="case-section-number">03 / Game + leaderboards</span>
           <div class="case-section-body">
             <h2 id="movie-game">The hidden game became a project of its own.</h2>
             <p class="lead-copy">
@@ -194,17 +210,31 @@
               appear on the daily or all-time boards. After a run, the game can also show the scores directly above and
               below the player.
             </p>
+            <p>
+              The public boards introduced backend problems the original game did not have. Scores need server-side
+              checks, names need moderation, old runs need migrations, and ties need consistent ranks. I added rate
+              limits, replay protection, score receipts, profile-based renaming, and daily and all-time views while
+              keeping the player flow short.
+            </p>
+            <h3>Measure before optimizing</h3>
+            <p>
+              As the game grew, guesses about performance became less useful. I built 25 deterministic benchmark
+              scenarios, from an empty scene to extreme entity counts, and compared changes against the same workload.
+              I kept the faster changes and rejected optimizations that moved work around without helping the cases
+              players actually reached.
+            </p>
           </div>
         </section>
 
         <section class="case-section" aria-labelledby="movie-evolution">
-          <span class="case-section-number">04 / Evolution</span>
+          <span class="case-section-number">04 / Iteration</span>
           <div class="case-section-body">
             <h2 id="movie-evolution">Most of the roadmap came from using the site.</h2>
             <p>
               I did not plan the finished system at the beginning. Each stage answered a current problem. The offer
-              needed to be clearer. The mobile layout needed work. I wanted real visitor numbers. Players needed a
-              reason to come back. Public scores then introduced validation and moderation work.
+              needed to be clearer. Robert wanted his contact information easier to find. The mobile layout needed
+              work. I wanted real visitor numbers. Players wanted more reasons to return. Public scores then introduced
+              validation and moderation work.
             </p>
 
             <ol class="timeline">
@@ -214,7 +244,7 @@
               </li>
               <li>
                 <strong>Responsive rebuild</strong>
-                <span>Reworked navigation, testimonials, purchase links, and phone layouts around the real content.</span>
+                <span>Reworked navigation, testimonials, contact details, purchase links, and phone layouts after real use.</span>
               </li>
               <li>
                 <strong>Browser game</strong>
@@ -237,12 +267,14 @@
           <div class="case-section-body">
             <h2 id="movie-outcome">Where the project stands.</h2>
             <p class="lead-copy">
-              Movie Master is live and has handled paid orders. The storefront still works as a static site, while the
-              Worker handles visitor data, game analytics, player records, and public scores.
+              Movie Master is live and has handled paid orders. Robert has one clear link for the business, and players
+              have a complete browser game with saved records and public competition. The storefront remains static,
+              while the Worker handles visitor data, game analytics, player records, and public scores.
             </p>
             <p>
-              Once the site launched, the work changed. I had to follow changing requests, diagnose problems I did not
-              anticipate, and decide when a new service was useful enough to justify the extra code.
+              Once the site launched, the work changed. I had to translate conversational requests into product
+              decisions, diagnose problems I did not anticipate, and decide when a new service was useful enough to
+              justify the extra code.
             </p>
 
             <div class="learning-grid">
@@ -274,7 +306,7 @@
 
     <a class="next-project" href="../garmin-watch-face/">
       <span>Next case study</span>
-      <strong>Minimal Garmin</strong>
+      <strong>Typeface 955</strong>
       <b aria-hidden="true">↗</b>
     </a>
 

@@ -9,7 +9,6 @@
     />
     <meta name="theme-color" content="#0a0a0a" />
     <title>Bugnut | Isaac Stoltz</title>
-    <script>document.documentElement.classList.add("js")</script>
     <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../../styles.css" />
     <script src="../../script.js" defer></script>
@@ -51,13 +50,13 @@
             <a class="case-button" href="https://github.com/ISASTO/bugnut-art">View source <span aria-hidden="true">↗</span></a>
           </div>
           <p>
-            I built a web reader for my comics and a command-line tool for adding new work. The tool handles the image
-            preparation and site updates I used to repeat by hand.
+            I fell in love with making small hand-drawn comics, then built the public reader and publishing tools I
+            wanted as the collection grew. The site now holds 14 works and 94 pages.
           </p>
         </div>
       </header>
 
-      <figure class="case-visual" data-reveal>
+      <figure class="case-visual bugnut-contact-sheet" data-reveal>
         <img
           src="https://raw.githubusercontent.com/ISASTO/bugnut-art/main/public/mini-comics-contact-sheet.jpg"
           alt="Contact sheet showing a collection of hand-drawn Bugnut mini-comic covers"
@@ -83,22 +82,34 @@
             <dd>Node.js, Sharp<br />Content validation</dd>
           </div>
           <div>
-            <dt>Delivery</dt>
-            <dd>Static export<br />GitHub Actions + Pages</dd>
+            <dt>Published collection</dt>
+            <dd>14 works<br />94 pages</dd>
           </div>
         </dl>
 
+        <nav class="case-toc" aria-label="Case study sections" data-reveal>
+          <span>Jump to</span>
+          <a href="#bugnut-problem">Purpose</a>
+          <a href="#bugnut-reader">Reader</a>
+          <a href="#bugnut-workflow">Workflow</a>
+          <a href="#bugnut-architecture">Architecture</a>
+          <a href="#bugnut-reliability">Reliability</a>
+          <a href="#bugnut-outcome">Outcome</a>
+        </nav>
+
         <section class="case-section" aria-labelledby="bugnut-problem">
-          <span class="case-section-number">01 / Problem</span>
+          <span class="case-section-number">01 / Purpose</span>
           <div class="case-section-body">
-            <h2 id="bugnut-problem">Adding a comic took too many manual steps.</h2>
+            <h2 id="bugnut-problem">The site began with the comics.</h2>
             <p class="lead-copy">
-              I draw comics regularly. Every new upload meant sorting and renaming pages, resizing images, making a
-              thumbnail, editing metadata, marking two-page spreads, and checking the finished site.
+              After months of drawing mini-comics, I wanted a permanent archive that felt like my work and a reader
+              that did not get between the artwork and the person reading it. I also sell physical copies online and
+              through local shops and events, so the site needed a direct path from reading to the shop.
             </p>
             <p>
-              The work was boring, easy to forget, and nearly identical each time. It also gave me several chances to
-              mistype a filename or publish metadata that no longer matched the files.
+              The collection kept growing. Every upload meant sorting and renaming pages, resizing images, making a
+              thumbnail, editing metadata, marking two-page spreads, and checking the finished site. The work was
+              repetitive and gave me several chances to publish a broken page order or stale catalog entry.
             </p>
             <p>
               I did not need a full content management system. I needed a tool that understood the folders I already
@@ -107,8 +118,30 @@
           </div>
         </section>
 
+        <section class="case-section" aria-labelledby="bugnut-reader">
+          <span class="case-section-number">02 / Reader</span>
+          <div class="case-section-body">
+            <h2 id="bugnut-reader">The reader adapts to the comic and the screen.</h2>
+            <p class="lead-copy">
+              Some pages are meant to be seen as spreads. That works on a wide screen, but shrinking two pages side by
+              side on a phone makes the drawings hard to read. The reader groups pages differently based on the
+              available width.
+            </p>
+            <p>
+              On desktop, compatible pages can open together as a spread. On a narrow screen, the same work becomes a
+              single-page sequence. The current page is stored in the URL hash, so a reader can share or reload a
+              specific point without an account or database.
+            </p>
+            <p>
+              The modal reader supports arrow keys, swipe gestures, fullscreen mode, and Escape. It traps focus while
+              open, returns focus to the launch control when closed, and preloads the next page group so navigation
+              feels immediate without downloading the entire comic at once.
+            </p>
+          </div>
+        </section>
+
         <section class="case-section" aria-labelledby="bugnut-workflow">
-          <span class="case-section-number">02 / Workflow</span>
+          <span class="case-section-number">03 / Workflow</span>
           <div class="case-section-body">
             <h2 id="bugnut-workflow">I turned the checklist into one command.</h2>
             <p class="lead-copy">
@@ -163,7 +196,7 @@ npm test</code></pre>
         </section>
 
         <section class="case-section" aria-labelledby="bugnut-architecture">
-          <span class="case-section-number">03 / Architecture</span>
+          <span class="case-section-number">04 / Architecture</span>
           <div class="case-section-body">
             <h2 id="bugnut-architecture">The app builds its catalog from the comic folders.</h2>
             <p class="lead-copy">
@@ -192,7 +225,7 @@ npm test</code></pre>
         </section>
 
         <section class="case-section" aria-labelledby="bugnut-reliability">
-          <span class="case-section-number">04 / Reliability</span>
+          <span class="case-section-number">05 / Reliability</span>
           <div class="case-section-body">
             <h2 id="bugnut-reliability">Bad content stops the build.</h2>
             <p>
@@ -232,16 +265,22 @@ npm test</code></pre>
         </section>
 
         <section class="case-section" aria-labelledby="bugnut-outcome">
-          <span class="case-section-number">05 / Outcome</span>
+          <span class="case-section-number">06 / Outcome</span>
           <div class="case-section-body">
             <h2 id="bugnut-outcome">I can publish without editing the app.</h2>
             <p class="lead-copy">
-              To publish a comic, I choose its folder, answer a few prompts, check the preview, and push the result. The
-              public reader stays fast because Next.js exports the site as static files.
+              Bugnut currently publishes 14 works and 94 pages. To add another, I choose its folder, answer a few
+              prompts, check the preview, and push the result. The public reader stays fast because Next.js exports the
+              site as static files.
             </p>
             <p>
               I use this tool whenever I add new work, so annoying prompts and unclear errors do not stay theoretical.
               If part of the process wastes time, I run into it again on the next comic and have a reason to fix it.
+            </p>
+            <p>
+              The site is both an archive and part of the small physical-comics operation around it. Readers can move
+              from a free digital comic to the <a href="https://bugnut.bigcartel.com/">Bugnut shop</a>, while the same
+              source folders and publishing checks keep the growing archive consistent.
             </p>
 
             <div class="learning-grid">

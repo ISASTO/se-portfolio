@@ -1,3 +1,5 @@
+document.documentElement.classList.add("js-enhanced");
+
 const header = document.querySelector("[data-header]");
 const navToggle = document.querySelector("[data-nav-toggle]");
 const navigation = document.querySelector("[data-nav]");
@@ -42,6 +44,12 @@ navToggle?.addEventListener("click", () => {
 
 navigation?.querySelectorAll("a").forEach((link) => {
   link.addEventListener("click", closeNavigation);
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape" || navToggle?.getAttribute("aria-expanded") !== "true") return;
+  closeNavigation();
+  navToggle?.focus();
 });
 
 window.addEventListener("resize", () => {

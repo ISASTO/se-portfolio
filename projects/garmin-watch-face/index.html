@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="How I designed a minimal Connect IQ watch face for my Garmin Forerunner 955."
+      content="How I designed, optimized, and tested Typeface 955, a distraction-free Garmin watch face."
     />
     <meta name="theme-color" content="#0a0a0a" />
-    <title>Minimal Garmin | Isaac Stoltz</title>
-    <script>document.documentElement.classList.add("js")</script>
+    <title>Typeface 955 | Isaac Stoltz</title>
     <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../../styles.css" />
     <script src="../../script.js" defer></script>
@@ -44,15 +43,15 @@
           <span>Case study 02</span>
           <span>Wearable software · 2026</span>
         </div>
-        <h1 class="case-title long-title" data-reveal>Minimal<br />Garmin</h1>
+        <h1 class="case-title long-title" data-reveal>Typeface<br />955</h1>
         <div class="case-deck" data-reveal>
           <div class="case-actions">
             <a class="case-button" href="../../#work">All projects <span aria-hidden="true">←</span></a>
             <a class="case-button" href="https://github.com/ISASTO/garmin-watchface">View source <span aria-hidden="true">↗</span></a>
           </div>
           <p>
-            I could not find a Garmin face that showed only what I wanted, so I made one. It shows the time, date, and
-            battery percentage, and nothing else.
+            I wanted my new Garmin to feel less like a phone than my Apple Watch did. Typeface 955 shows only the time,
+            date, and battery, with settings that keep those three values readable.
           </p>
         </div>
       </header>
@@ -60,12 +59,12 @@
       <figure class="case-visual garmin-device-visual" data-reveal>
         <img
           src="../../assets/images/garmin-watch-preview.png"
-          alt="Minimal Garmin watch face showing Friday the 4th, 10:09, and a battery value of 100 on a Forerunner 955"
+          alt="Typeface 955 showing Friday the 4th, 10:09, and a battery value of 100 on a Forerunner 955"
           width="388"
           height="543"
           decoding="async"
         />
-        <figcaption>Watch face preview for the Forerunner 955</figcaption>
+        <figcaption>Typeface 955 on a Forerunner 955</figcaption>
       </figure>
 
       <div class="case-main">
@@ -83,13 +82,22 @@
             <dd>Garmin<br />Forerunner 955</dd>
           </div>
           <div>
-            <dt>Product state</dt>
-            <dd>Installed and tested<br />on physical hardware</dd>
+            <dt>Current scope</dt>
+            <dd>260 × 260 display<br />5 custom typefaces</dd>
           </div>
         </dl>
 
+        <nav class="case-toc" aria-label="Case study sections" data-reveal>
+          <span>Jump to</span>
+          <a href="#garmin-problem">Motivation</a>
+          <a href="#garmin-layout">Interface</a>
+          <a href="#garmin-cadence">Rendering</a>
+          <a href="#garmin-constraints">Hardware testing</a>
+          <a href="#garmin-outcome">Outcome</a>
+        </nav>
+
         <section class="case-section" aria-labelledby="garmin-problem">
-          <span class="case-section-number">01 / Problem</span>
+          <span class="case-section-number">01 / Motivation</span>
           <div class="case-section-body">
             <h2 id="garmin-problem">I wanted less from my smartwatch.</h2>
             <p class="lead-copy">
@@ -151,6 +159,13 @@
                 </p>
               </article>
             </div>
+            <h3>Settings without turning the face into a dashboard</h3>
+            <p>
+              I compared several font and battery layouts before choosing the default. The finished face includes five
+              custom typefaces, four date sizes, four battery sizes, optional color controls, and an optional percent
+              sign. The settings preview updates on the watch, so the user can judge a choice on the real display
+              instead of guessing from a list of names.
+            </p>
           </div>
         </section>
 
@@ -198,7 +213,7 @@ draw(cachedDate, cachedTime, cachedBattery);</code></pre>
         </section>
 
         <section class="case-section" aria-labelledby="garmin-constraints">
-          <span class="case-section-number">04 / Constraints</span>
+          <span class="case-section-number">04 / Hardware testing</span>
           <div class="case-section-body">
             <h2 id="garmin-constraints">The simulator was not enough.</h2>
             <p>
@@ -206,12 +221,19 @@ draw(cachedDate, cachedTime, cachedBattery);</code></pre>
               display also gives every line of text a hard width limit. I used the simulator while iterating, then
               installed each serious version on my Forerunner 955 to check spacing and readability on the real screen.
             </p>
+            <p>
+              One attempted battery optimization looked reasonable in the simulator: skip a draw when the visible
+              values had not changed. On the watch, that could leave the screen black after a gesture. The hardware
+              expects a complete frame on every update callback. I changed the design so every callback draws the
+              full frame, while the code avoids repeating the clock formatting, battery lookup, date lookup, and font
+              loading behind it.
+            </p>
             <h3>Most of the work came down to small decisions</h3>
             <ul>
               <li>Preparing custom fonts that rendered consistently on the watch.</li>
               <li>Making the time as large as possible without clipping near the curved edges.</li>
               <li>Adding color options without cluttering the default face.</li>
-              <li>Checking the packaged app on the physical watch instead of relying only on the simulator.</li>
+              <li>Finding a blank-screen bug that appeared only after installing the optimized build on the watch.</li>
               <li>Separating sensible optimizations from battery claims I had not measured.</li>
             </ul>
           </div>
@@ -222,8 +244,8 @@ draw(cachedDate, cachedTime, cachedBattery);</code></pre>
           <div class="case-section-body">
             <h2 id="garmin-outcome">It now runs on the watch I wear every day.</h2>
             <p class="lead-copy">
-              The finished face gives me the three things I check most often. I do not have to open a widget, dismiss
-              anything, or search through extra data.
+              Typeface 955 now runs on the watch I wear every day. It gives me the three things I check most often. I
+              do not have to open a widget, dismiss anything, or search through extra data.
             </p>
             <p>
               I can explain why the code avoids unnecessary formatting and resource work. I have not completed a
@@ -245,7 +267,7 @@ draw(cachedDate, cachedTime, cachedBattery);</code></pre>
               <article class="learning-card">
                 <span>TESTING</span>
                 <h3>The real watch settled the layout</h3>
-                <p>The simulator was useful, but the physical watch exposed spacing and readability issues more clearly.</p>
+                <p>The simulator was useful, but the watch exposed both layout issues and a blank-screen rendering bug.</p>
               </article>
               <article class="learning-card">
                 <span>MEASUREMENT</span>

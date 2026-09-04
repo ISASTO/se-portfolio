@@ -11,11 +11,10 @@
     <meta property="og:title" content="Isaac Stoltz | Software Engineering" />
     <meta
       property="og:description"
-      content="Three projects built for real use: Movie Master, Minimal Garmin, and Bugnut."
+      content="Three projects built for real use: Movie Master, Typeface 955, and Bugnut."
     />
     <meta property="og:type" content="website" />
     <title>Isaac Stoltz | Software Engineering</title>
-    <script>document.documentElement.classList.add("js")</script>
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
@@ -50,8 +49,8 @@
     <main id="main">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-kicker" data-reveal>
-          <span>Software Engineering</span>
-          <span>Minneapolis, Minnesota</span>
+          <span>Software engineering student</span>
+          <span>Expected spring 2028</span>
         </div>
 
         <h1 id="hero-title" class="hero-title" data-reveal>
@@ -60,7 +59,11 @@
         </h1>
 
         <div class="hero-footer" data-reveal>
-          <p>University of Minnesota Crookston</p>
+          <div class="hero-intro">
+            <p>University of Minnesota Crookston</p>
+            <p>I build full-stack products, practical tools, and device software around problems I have seen firsthand.</p>
+            <span>Seeking Summer 2027 software engineering internships</span>
+          </div>
           <a class="text-link" href="#work">
             Selected work
             <svg aria-hidden="true" viewBox="0 0 20 20">
@@ -91,13 +94,14 @@
           <div class="project-copy">
             <div class="project-meta">
               <span>Full-stack product</span>
-              <span>2026</span>
+              <span>2024 to present</span>
             </div>
             <h3><a href="projects/movie-master/">Movie Master</a></h3>
             <p>
-              Movie Master started as a static site for a one-person movie recommendation business. It now includes a
-              browser game, analytics, and public leaderboards.
+              A live storefront and browser game for an unusual one-person business. I started with a static site,
+              then added analytics and public leaderboards when real use called for them.
             </p>
+            <p class="project-proof">Live business · 2 game modes · 25 benchmark scenarios</p>
             <ul class="tag-list" aria-label="Technologies used">
               <li>JavaScript</li>
               <li>Cloudflare Workers</li>
@@ -116,7 +120,7 @@
           <a
             class="project-visual watch-stage"
             href="projects/garmin-watch-face/"
-            aria-label="Read the Minimal Garmin case study"
+            aria-label="Read the Typeface 955 case study"
           >
             <span class="watch-glow" aria-hidden="true"></span>
             <span class="watch" aria-hidden="true">
@@ -133,11 +137,12 @@
               <span>Wearable software</span>
               <span>2026</span>
             </div>
-            <h3><a href="projects/garmin-watch-face/">Minimal Garmin</a></h3>
+            <h3><a href="projects/garmin-watch-face/">Typeface 955</a></h3>
             <p>
-              Most Garmin faces showed more than I wanted. Mine shows the time, date, and battery in a high-contrast
-              layout with no extra data or distractions.
+              A distraction-free Garmin watch face I designed for the watch I wear every day. Physical-device testing
+              shaped the layout, settings, and rendering strategy.
             </p>
+            <p class="project-proof">260 × 260 display · 5 typefaces · tested on hardware</p>
             <ul class="tag-list" aria-label="Technologies used">
               <li>Monkey C</li>
               <li>Connect IQ</li>
@@ -171,9 +176,10 @@
             </div>
             <h3><a href="projects/bugnut/">Bugnut</a></h3>
             <p>
-              I draw comics and wanted an easier way to publish them. This Next.js site includes a guided importer
-              that prepares images, creates metadata, checks the content, and gets each comic ready to deploy.
+              A reader and publishing pipeline for my hand-drawn comics. One guided command prepares the images,
+              derives the catalog data, validates the content, and gets a new comic ready to publish.
             </p>
+            <p class="project-proof">14 published works · 94 pages · guided import command</p>
             <ul class="tag-list" aria-label="Technologies used">
               <li>Next.js</li>
               <li>TypeScript</li>
@@ -197,17 +203,18 @@
 
         <div class="about-copy" data-reveal>
           <h2 id="about-title">
-            I like building software I can actually use.
+            I stay with projects after the first version works.
           </h2>
           <div class="about-columns">
             <p>
-              I’m studying software engineering at the University of Minnesota Crookston. Most of my projects begin
-              with something close to home: a person who needs a website, a tool I wish existed, or a task I am tired
-              of doing by hand.
+              I’m a software engineering student at the University of Minnesota Crookston, studying online from
+              Minneapolis and graduating in spring 2028. Most of my projects begin close to home: a person who needs
+              a website, a tool I wish existed, or a task I am tired of doing by hand.
             </p>
             <p>
-              I enjoy getting a rough idea working, then staying with it. That usually means testing on real devices,
-              fixing awkward mobile behavior, tracing edge cases, and writing tools that make the next update easier.
+              What interests me most comes next. I test with real people and real devices, fix the awkward cases, and
+              simplify the next update. That has led me from static pages to backend services, from a simulator to a
+              physical watch, and from a manual publishing checklist to a reusable command-line tool.
             </p>
           </div>
         </div>
@@ -215,7 +222,11 @@
 
       <section class="contact-section" id="contact" aria-labelledby="contact-title">
         <p class="eyebrow" data-reveal>Contact</p>
-        <h2 id="contact-title" data-reveal>Want to talk about<br />one of these projects?</h2>
+        <h2 id="contact-title" data-reveal>Looking for a Summer 2027<br />software engineering intern?</h2>
+        <p class="contact-note" data-reveal>
+          I’m open to full-stack, frontend, developer tooling, and device-software roles. I’m happy to walk through any
+          of these projects and the decisions behind them.
+        </p>
         <div class="contact-actions" data-reveal>
           <a class="email-link" href="mailto:isaacstoltz2@gmail.com">
             isaacstoltz2@gmail.com
