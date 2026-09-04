@@ -665,6 +665,7 @@ a {
   padding-block: 28px 38px;
   border-top: 1px solid var(--line);
   align-items: center;
+  justify-content: space-between;
 }
 
 .site-footer p {
@@ -1367,11 +1368,11 @@ a {
     display: block;
   }
 
-  .nav-toggle[aria-expanded="true"] span:not(.sr-only):first-of-type {
+  .nav-toggle[aria-expanded="true"] span:nth-of-type(2) {
     transform: translateY(3.5px) rotate(45deg);
   }
 
-  .nav-toggle[aria-expanded="true"] span:not(.sr-only):last-of-type {
+  .nav-toggle[aria-expanded="true"] span:nth-of-type(3) {
     transform: translateY(-3.5px) rotate(-45deg);
   }
 
