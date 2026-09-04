@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Software engineering portfolio of Isaac Stoltz: web products, developer tooling, and wearable software."
+    />
+    <meta name="theme-color" content="#0a0a0a" />
+    <meta property="og:title" content="Isaac Stoltz — Software Engineering" />
+    <meta
+      property="og:description"
+      content="Selected software engineering work across the web and constrained devices."
+    />
+    <meta property="og:type" content="website" />
+    <title>Isaac Stoltz — Software Engineering</title>
+    <script>document.documentElement.classList.add("js")</script>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" data-header>
+      <a class="wordmark" href="./" aria-label="Isaac Stoltz, home">
+        <span>IS</span>
+      </a>
+
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-navigation"
+        data-nav-toggle
+      >
+        <span class="sr-only">Toggle navigation</span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+
+      <nav class="site-nav" id="site-navigation" aria-label="Primary" data-nav>
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="mailto:isaacstoltz2@gmail.com">Email</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-kicker" data-reveal>
+          <span>Software Engineering</span>
+          <span>Minneapolis, Minnesota</span>
+        </div>
+
+        <h1 id="hero-title" class="hero-title" data-reveal>
+          <span>Isaac</span>
+          <span class="hero-title-outline">Stoltz</span>
+        </h1>
+
+        <div class="hero-footer" data-reveal>
+          <p>University of Minnesota Crookston</p>
+          <a class="text-link" href="#work">
+            Selected work
+            <svg aria-hidden="true" viewBox="0 0 20 20">
+              <path d="M10 3v13M4.5 10.5 10 16l5.5-5.5" />
+            </svg>
+          </a>
+        </div>
+      </section>
+
+      <section class="work-section" id="work" aria-labelledby="work-title">
+        <div class="section-heading" data-reveal>
+          <p class="eyebrow">Selected work</p>
+          <h2 id="work-title">Three projects.<br />Three kinds of constraint.</h2>
+        </div>
+
+        <article class="project project-movie" data-reveal>
+          <a class="project-visual" href="projects/movie-master/" aria-label="Read the Movie Master case study">
+            <img
+              src="https://raw.githubusercontent.com/ISASTO/movie-master/main/assets/images/social-preview-1200x630.jpg"
+              alt="Movie Master promotional artwork with a suited figure against radiating yellow and red lines"
+              width="1200"
+              height="630"
+              decoding="async"
+            />
+            <span class="project-index" aria-hidden="true">01</span>
+          </a>
+
+          <div class="project-copy">
+            <div class="project-meta">
+              <span>Full-stack product</span>
+              <span>2026</span>
+            </div>
+            <h3><a href="projects/movie-master/">Movie Master</a></h3>
+            <p>
+              A real web product for an unconventional movie-recommendation business—expanded from a static
+              storefront into a browser game, analytics platform, and public leaderboard system.
+            </p>
+            <ul class="tag-list" aria-label="Technologies used">
+              <li>JavaScript</li>
+              <li>Cloudflare Workers</li>
+              <li>D1 / SQL</li>
+              <li>GitHub Pages</li>
+            </ul>
+            <div class="project-links">
+              <a class="arrow-link" href="projects/movie-master/">Read case study <span aria-hidden="true">↗</span></a>
+              <a href="https://moviemaster.vip/">Live site <span class="sr-only">opens external website</span></a>
+              <a href="https://github.com/ISASTO/movie-master">Source <span class="sr-only">on GitHub</span></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project project-garmin" data-reveal>
+          <a
+            class="project-visual watch-stage"
+            href="projects/garmin-watch-face/"
+            aria-label="Read the Minimal Garmin case study"
+          >
+            <span class="watch-glow" aria-hidden="true"></span>
+            <span class="watch" aria-hidden="true">
+              <span class="watch-button watch-button-one"></span>
+              <span class="watch-button watch-button-two"></span>
+              <span class="watch-button watch-button-three"></span>
+              <span class="watch-face">
+                <span class="watch-date">WED 19</span>
+                <span class="watch-time">0743</span>
+                <span class="watch-battery">87%</span>
+              </span>
+            </span>
+            <span class="project-index" aria-hidden="true">02</span>
+          </a>
+
+          <div class="project-copy">
+            <div class="project-meta">
+              <span>Wearable software</span>
+              <span>2026</span>
+            </div>
+            <h3><a href="projects/garmin-watch-face/">Minimal Garmin</a></h3>
+            <p>
+              A purpose-built Connect IQ watch face that reduces a smartwatch to three essentials: time, date,
+              and battery—with rendering decisions shaped by readability and device constraints.
+            </p>
+            <ul class="tag-list" aria-label="Technologies used">
+              <li>Monkey C</li>
+              <li>Connect IQ</li>
+              <li>Custom resources</li>
+              <li>On-device testing</li>
+            </ul>
+            <div class="project-links">
+              <a class="arrow-link" href="projects/garmin-watch-face/">Read case study <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project project-bugnut" data-reveal>
+          <a class="project-visual" href="projects/bugnut/" aria-label="Read the Bugnut case study">
+            <img
+              src="https://raw.githubusercontent.com/ISASTO/bugnut-art/main/public/mini-comics-contact-sheet.jpg"
+              alt="Contact sheet showing a collection of hand-drawn Bugnut mini-comic covers"
+              width="1800"
+              height="1200"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="project-index" aria-hidden="true">03</span>
+          </a>
+
+          <div class="project-copy">
+            <div class="project-meta">
+              <span>Publishing system</span>
+              <span>2026</span>
+            </div>
+            <h3><a href="projects/bugnut/">Bugnut</a></h3>
+            <p>
+              A comic reader and publishing pipeline built around my own artwork. One guided command turns a
+              folder of page images into normalized assets, metadata, thumbnails, validation, and a deployable site.
+            </p>
+            <ul class="tag-list" aria-label="Technologies used">
+              <li>Next.js</li>
+              <li>TypeScript</li>
+              <li>Node.js</li>
+              <li>Sharp</li>
+            </ul>
+            <div class="project-links">
+              <a class="arrow-link" href="projects/bugnut/">Read case study <span aria-hidden="true">↗</span></a>
+              <a href="https://bugnut.art/">Live site <span class="sr-only">opens external website</span></a>
+              <a href="https://github.com/ISASTO/bugnut-art">Source <span class="sr-only">on GitHub</span></a>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="about-section" id="about" aria-labelledby="about-title">
+        <div class="about-label" data-reveal>
+          <p class="eyebrow">About</p>
+          <span class="about-rule" aria-hidden="true"></span>
+        </div>
+
+        <div class="about-copy" data-reveal>
+          <h2 id="about-title">
+            I like software with a reason to exist.
+          </h2>
+          <div class="about-columns">
+            <p>
+              I’m a software engineering student at the University of Minnesota Crookston. My best work starts
+              with a real person, a repeated frustration, or a constraint that makes the obvious solution wrong.
+            </p>
+            <p>
+              I care about the unglamorous last mile: responsive behavior, failure states, performance, clear
+              documentation, and the tooling that makes a product easier to keep alive after launch.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-section" id="contact" aria-labelledby="contact-title">
+        <p class="eyebrow" data-reveal>Contact</p>
+        <h2 id="contact-title" data-reveal>Let’s build something<br />worth maintaining.</h2>
+        <div class="contact-actions" data-reveal>
+          <a class="email-link" href="mailto:isaacstoltz2@gmail.com">
+            isaacstoltz2@gmail.com
+            <span aria-hidden="true">↗</span>
+          </a>
+          <button class="copy-button" type="button" data-copy-email data-email="isaacstoltz2@gmail.com">
+            Copy email
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <span data-year>2026</span> Isaac Stoltz</p>
+      <div>
+        <a href="https://github.com/ISASTO">GitHub</a>
+        <a href="#main">Back to top ↑</a>
+      </div>
+    </footer>
+
+    <div class="copy-status" role="status" aria-live="polite" data-copy-status></div>
+  </body>
+</html>

@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Movie Master case study: evolving a static business site into a browser game, analytics system, and public leaderboards."
+    />
+    <meta name="theme-color" content="#0a0a0a" />
+    <title>Movie Master — Isaac Stoltz</title>
+    <script>document.documentElement.classList.add("js")</script>
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../styles.css" />
+    <script src="../../script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="case-progress" aria-hidden="true" data-case-progress></div>
+
+    <header class="site-header" data-header>
+      <a class="wordmark" href="../../" aria-label="Isaac Stoltz, home"><span>IS</span></a>
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-navigation"
+        data-nav-toggle
+      >
+        <span class="sr-only">Toggle navigation</span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary" data-nav>
+        <a href="../../#work">Work</a>
+        <a href="../../#about">About</a>
+        <a href="mailto:isaacstoltz2@gmail.com">Email</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <header class="case-hero">
+        <div class="case-kicker" data-reveal>
+          <span>Case study 01</span>
+          <span>Full-stack product · 2026</span>
+        </div>
+        <h1 class="case-title long-title" data-reveal>Movie<br />Master</h1>
+        <div class="case-deck" data-reveal>
+          <div class="case-actions">
+            <a class="case-button primary" href="https://moviemaster.vip/">Visit live site <span aria-hidden="true">↗</span></a>
+            <a class="case-button" href="https://github.com/ISASTO/movie-master">View source <span aria-hidden="true">↗</span></a>
+          </div>
+          <p>
+            Turning an eccentric real-world microbusiness into a responsive web product, then evolving the
+            simplest possible architecture as actual use created new requirements.
+          </p>
+        </div>
+      </header>
+
+      <figure class="case-visual" data-reveal>
+        <img
+          src="https://raw.githubusercontent.com/ISASTO/movie-master/main/assets/images/social-preview-1200x630.jpg"
+          alt="Movie Master promotional artwork with a suited figure centered over radiating yellow and red lines"
+          width="1200"
+          height="630"
+          decoding="async"
+        />
+        <figcaption>Movie Master visual identity</figcaption>
+      </figure>
+
+      <div class="case-main">
+        <dl class="case-facts" data-reveal>
+          <div>
+            <dt>Role</dt>
+            <dd>Product design<br />Full-stack engineering</dd>
+          </div>
+          <div>
+            <dt>Core stack</dt>
+            <dd>HTML, CSS, JavaScript<br />Cloudflare Workers + D1</dd>
+          </div>
+          <div>
+            <dt>Delivery</dt>
+            <dd>GitHub Pages<br />GitHub Actions</dd>
+          </div>
+          <div>
+            <dt>Product state</dt>
+            <dd>Live<br />Used by paying customers</dd>
+          </div>
+        </dl>
+
+        <section class="case-section" aria-labelledby="movie-problem">
+          <span class="case-section-number">01 / Problem</span>
+          <div class="case-section-body">
+            <h2 id="movie-problem">A business with no software—and no ordinary brand.</h2>
+            <p class="lead-copy">
+              Movie Master began with a real person selling personalized movie recommendations. The service had
+              customers, strong opinions, and a completely singular voice, but almost no technical infrastructure.
+            </p>
+            <p>
+              I set out to make the business legible and usable online without sanding off everything that made it
+              memorable. That created a product problem more interesting than a conventional student brief: the site
+              needed to be credible enough to transact through, but a generic polished landing page would have made
+              the underlying idea less compelling.
+            </p>
+            <h3>The working constraints</h3>
+            <ul>
+              <li>An extremely small infrastructure budget.</li>
+              <li>A nontechnical collaborator and requirements that changed through conversation.</li>
+              <li>Real customers on both desktop and mobile.</li>
+              <li>A visual identity that needed to feel earnest, unusual, and unmistakably specific.</li>
+              <li>New functionality that could not make the basic storefront fragile.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="case-section" aria-labelledby="movie-decisions">
+          <span class="case-section-number">02 / Decisions</span>
+          <div class="case-section-body">
+            <h2 id="movie-decisions">Let complexity arrive only when a feature earns it.</h2>
+            <p class="lead-copy">
+              The first version did not need an application framework or a database. It needed to load quickly,
+              explain the offer, and work reliably. I kept the core static and added stateful services at the edge.
+            </p>
+
+            <div class="decision-grid">
+              <article class="decision-card">
+                <span>01</span>
+                <h3>Preserve the voice</h3>
+                <p>
+                  The visual system uses loud display type, testimonials, and deliberately heightened sales language.
+                  Usability became cleaner while the product’s strange personality stayed intact.
+                </p>
+              </article>
+              <article class="decision-card">
+                <span>02</span>
+                <h3>Keep the core static</h3>
+                <p>
+                  GitHub Pages serves the storefront and game with almost no operational surface area. Static assets
+                  remain available even if analytics or leaderboard requests fail.
+                </p>
+              </article>
+              <article class="decision-card">
+                <span>03</span>
+                <h3>Add state at the boundary</h3>
+                <p>
+                  A Cloudflare Worker and D1 database handle the features that truly require shared state: anonymous
+                  visitor counts, run telemetry, player profiles, and leaderboards.
+                </p>
+              </article>
+              <article class="decision-card">
+                <span>04</span>
+                <h3>Protect the primary experience</h3>
+                <p>
+                  Observability is useful but noncritical. Telemetry calls are isolated so a failed analytics request
+                  cannot interrupt gameplay or prevent a visitor from using the site.
+                </p>
+              </article>
+            </div>
+
+            <ol class="architecture" aria-label="Movie Master system architecture">
+              <li>Browser <small>Storefront + game</small></li>
+              <li>GitHub Pages <small>Static delivery</small></li>
+              <li>Worker API <small>Validation + routes</small></li>
+              <li>Cloudflare D1 <small>Shared state</small></li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="case-section" aria-labelledby="movie-game">
+          <span class="case-section-number">03 / Game</span>
+          <div class="case-section-body">
+            <h2 id="movie-game">A hidden extra became its own engineering system.</h2>
+            <p class="lead-copy">
+              What began as a small browser diversion grew into a real-time game with distinct modes, persistent
+              records, controller support, instrumentation, and shared leaderboards.
+            </p>
+            <p>
+              The game runs a continuous update/render loop and manages moving entities, collision detection,
+              projectiles, power-ups, escalating difficulty, pausing, and local statistics. Standard and Hardcore
+              modes share most of the system while applying different failure rules.
+            </p>
+            <p>
+              Input became one of the best examples of finishing the last ten percent. Keyboard, pointer, and gamepad
+              behavior need different handling. Controller input applies dead zones to avoid drift; if the active
+              controller disconnects, the game pauses instead of silently leaving the player unable to respond.
+            </p>
+            <h3>Public leaderboards without accounts</h3>
+            <p>
+              I wanted a returning player to keep a name and improve one personal best without building a complete
+              authentication product. A browser-held anonymous identity links the local player to validated daily and
+              all-time records. The Worker normalizes names and scores before anything becomes public, while the UI
+              can show the leaders and the player’s immediate neighborhood in the ranking.
+            </p>
+            <blockquote class="pull-quote">
+              The game taught me that “supports controllers” is a first draft. Disconnects, dead zones, focus loss,
+              menu navigation, and recovery are the feature.
+            </blockquote>
+          </div>
+        </section>
+
+        <section class="case-section" aria-labelledby="movie-evolution">
+          <span class="case-section-number">04 / Evolution</span>
+          <div class="case-section-body">
+            <h2 id="movie-evolution">Requirements emerged from use.</h2>
+            <p>
+              There was no frozen rubric. Each layer came from an observed need: a clearer offer, a mobile layout
+              problem, a desire to know whether people were visiting, a competitive game, then the reliability and
+              moderation work that public scores require.
+            </p>
+
+            <ol class="timeline">
+              <li>
+                <strong>Static business site</strong>
+                <span>Established the offer, voice, calls to action, and automatic GitHub Pages deployment.</span>
+              </li>
+              <li>
+                <strong>Responsive product polish</strong>
+                <span>Reworked navigation, testimonials, purchase paths, and mobile behavior around real content.</span>
+              </li>
+              <li>
+                <strong>Browser game</strong>
+                <span>Added a live game loop, multiple control schemes, modes, progression, and persistent local records.</span>
+              </li>
+              <li>
+                <strong>Anonymous analytics</strong>
+                <span>Introduced a Worker and D1 when shared visitor and run data finally justified server-side state.</span>
+              </li>
+              <li>
+                <strong>Public competition</strong>
+                <span>Added named daily/all-time boards, validation, score neighborhoods, migrations, and backend tests.</span>
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="case-section" aria-labelledby="movie-outcome">
+          <span class="case-section-number">05 / Outcome</span>
+          <div class="case-section-body">
+            <h2 id="movie-outcome">A tiny product that behaves like a real one.</h2>
+            <p class="lead-copy">
+              Movie Master is live, supports real paid transactions, records real usage, and has continued to evolve
+              without abandoning its original lightweight core.
+            </p>
+            <p>
+              More importantly, it changed how I think about engineering judgment. The most impressive architecture is
+              not the one with the most pieces. It is the one whose pieces correspond to real requirements—and whose
+              failures are contained so the product’s main purpose still works.
+            </p>
+
+            <div class="learning-grid">
+              <article class="learning-card">
+                <span>LESSON 01</span>
+                <h3>Personality is a product requirement</h3>
+                <p>A technically cleaner interface can still be wrong if it erases the reason people remember it.</p>
+              </article>
+              <article class="learning-card">
+                <span>LESSON 02</span>
+                <h3>State belongs where it is needed</h3>
+                <p>A static core can support a surprisingly capable product when stateful services are added deliberately.</p>
+              </article>
+              <article class="learning-card">
+                <span>LESSON 03</span>
+                <h3>Noncritical systems should fail quietly</h3>
+                <p>Analytics is valuable. It is never valuable enough to break the experience it is measuring.</p>
+              </article>
+              <article class="learning-card">
+                <span>LESSON 04</span>
+                <h3>Real use changes the backlog</h3>
+                <p>Actual players exposed edge cases and priorities that an isolated specification never would have produced.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <a class="next-project" href="../garmin-watch-face/">
+      <span>Next case study</span>
+      <strong>Minimal Garmin</strong>
+      <b aria-hidden="true">↗</b>
+    </a>
+
+    <footer class="site-footer">
+      <p>© <span data-year>2026</span> Isaac Stoltz</p>
+      <div>
+        <a href="https://github.com/ISASTO">GitHub</a>
+        <a href="#main">Back to top ↑</a>
+      </div>
+    </footer>
+  </body>
+</html>
