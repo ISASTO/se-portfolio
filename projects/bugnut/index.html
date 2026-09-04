@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Bugnut case study: a Next.js comic reader and automated publishing pipeline for turning raw artwork into a validated static site."
+      content="How I built a Next.js comic reader and a command-line tool that prepares new comics for publication."
     />
     <meta name="theme-color" content="#0a0a0a" />
-    <title>Bugnut — Isaac Stoltz</title>
+    <title>Bugnut | Isaac Stoltz</title>
     <script>document.documentElement.classList.add("js")</script>
     <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../../styles.css" />
@@ -51,8 +51,8 @@
             <a class="case-button" href="https://github.com/ISASTO/bugnut-art">View source <span aria-hidden="true">↗</span></a>
           </div>
           <p>
-            A web reader and automated publishing system designed so releasing a comic feels like publishing artwork,
-            not maintaining a website.
+            I built a web reader for my comics and a command-line tool for adding new work. The tool handles the image
+            preparation and site updates I used to repeat by hand.
           </p>
         </div>
       </header>
@@ -91,19 +91,18 @@
         <section class="case-section" aria-labelledby="bugnut-problem">
           <span class="case-section-number">01 / Problem</span>
           <div class="case-section-body">
-            <h2 id="bugnut-problem">The site was not the repetitive part. Publishing was.</h2>
+            <h2 id="bugnut-problem">Adding a comic took too many manual steps.</h2>
             <p class="lead-copy">
-              I make hand-drawn comics frequently. A normal gallery would leave me resizing pages, renaming files,
-              creating thumbnails, counting pages, editing metadata, identifying spreads, and checking the result by hand.
+              I draw comics regularly. Every new upload meant sorting and renaming pages, resizing images, making a
+              thumbnail, editing metadata, marking two-page spreads, and checking the finished site.
             </p>
             <p>
-              That workflow has two bad properties: it steals time from the work the site exists to share, and it
-              invites small inconsistencies every time content is added. The real software problem became: how much can
-              the computer safely infer from an ordinary folder of exported artwork?
+              The work was boring, easy to forget, and nearly identical each time. It also gave me several chances to
+              mistype a filename or publish metadata that no longer matched the files.
             </p>
             <p>
-              The answer shaped the entire project. Rather than build a content management interface, I built a small
-              convention-driven publishing system around the way I already produce files.
+              I did not need a full content management system. I needed a tool that understood the folders I already
+              exported and asked me only for information it could not work out on its own.
             </p>
           </div>
         </section>
@@ -111,15 +110,15 @@
         <section class="case-section" aria-labelledby="bugnut-workflow">
           <span class="case-section-number">02 / Workflow</span>
           <div class="case-section-body">
-            <h2 id="bugnut-workflow">One command replaces a fragile checklist.</h2>
+            <h2 id="bugnut-workflow">I turned the checklist into one command.</h2>
             <p class="lead-copy">
-              The guided importer asks only for information the files cannot supply: source folder, title, content type,
-              date, and a few optional editorial choices.
+              The guided importer asks for the source folder, title, type, date, and a few optional choices. It gets the
+              rest from the artwork.
             </p>
 
             <div class="process-comparison" aria-label="Manual and automated comic publishing workflows">
               <article class="process-column">
-                <span>Manual workflow</span>
+                <span>Before</span>
                 <ol>
                   <li>Sort and rename pages</li>
                   <li>Rotate and resize images</li>
@@ -132,7 +131,7 @@
                 </ol>
               </article>
               <article class="process-column is-after">
-                <span>Bugnut workflow</span>
+                <span>Now</span>
                 <ol>
                   <li>Drop exports in a folder</li>
                   <li>Run npm run add-comic</li>
@@ -143,14 +142,14 @@
               </article>
             </div>
 
-            <h3>What the importer handles</h3>
+            <h3>What the command does</h3>
             <ul>
-              <li>Naturally sorts input filenames and asks the user to confirm reading order.</li>
-              <li>Copies rather than mutates source artwork, then normalizes output to sequential JPEG files.</li>
-              <li>Auto-rotates, flattens, strips metadata, and limits dimensions with Sharp.</li>
-              <li>Generates the gallery thumbnail and derives page counts from the directory.</li>
-              <li>Detects landscape pages that should occupy a two-page spread.</li>
-              <li>Updates a generated catalog, sorts sections by date, and runs content checks.</li>
+              <li>Sorts the input files and asks me to confirm the reading order.</li>
+              <li>Copies the source artwork, then writes sequential JPEG files without changing the originals.</li>
+              <li>Uses Sharp to rotate, flatten, resize, and remove metadata from each image.</li>
+              <li>Creates a gallery thumbnail and counts the pages.</li>
+              <li>Finds landscape pages that should be displayed as two-page spreads.</li>
+              <li>Updates the site catalog, sorts the work by date, and runs the content checks.</li>
             </ul>
 
             <div class="code-callout" aria-label="Command for publishing a new comic">
@@ -166,15 +165,15 @@ npm test</code></pre>
         <section class="case-section" aria-labelledby="bugnut-architecture">
           <span class="case-section-number">03 / Architecture</span>
           <div class="case-section-body">
-            <h2 id="bugnut-architecture">The directory is the source of truth.</h2>
+            <h2 id="bugnut-architecture">The app builds its catalog from the comic folders.</h2>
             <p class="lead-copy">
-              Each comic is a folder of sequential page images plus a small <code>comic.json</code> containing only
-              information that cannot be derived reliably.
+              Each comic has its own folder with numbered page images and a small <code>comic.json</code> file. The JSON
+              contains the title, date, and other details the script cannot learn from an image.
             </p>
             <p>
-              Page count should not exist in two places. Neither should thumbnail state or spread detection. Duplicated
-              metadata drifts; derived metadata can be rebuilt. The preparation script validates the folders and
-              produces the catalog consumed by the Next.js application.
+              I do not store the page count in two places because the script can count the files. It can also create the
+              thumbnail and detect spreads again whenever the catalog is rebuilt. The Next.js app reads the generated
+              catalog rather than maintaining another hand-written list.
             </p>
 
             <ol class="architecture" aria-label="Bugnut publishing architecture">
@@ -184,11 +183,10 @@ npm test</code></pre>
               <li>GitHub Pages <small>Static delivery</small></li>
             </ol>
 
-            <h3>Convention over configuration</h3>
+            <h3>A few simple conventions</h3>
             <p>
-              Predictable names such as <code>001.jpg</code>, <code>002.jpg</code>, and a constrained metadata schema make
-              the rest of the system simpler. The importer generates those conventions, so their reliability does not
-              depend on remembering a document every time I publish.
+              Pages are named <code>001.jpg</code>, <code>002.jpg</code>, and so on. The importer creates those names and
+              writes the metadata in the format the app expects. I do not have to remember the rules each time.
             </p>
           </div>
         </section>
@@ -196,38 +194,38 @@ npm test</code></pre>
         <section class="case-section" aria-labelledby="bugnut-reliability">
           <span class="case-section-number">04 / Reliability</span>
           <div class="case-section-body">
-            <h2 id="bugnut-reliability">Broken content should fail before deployment.</h2>
+            <h2 id="bugnut-reliability">Bad content stops the build.</h2>
             <p>
-              The pipeline checks slugs, dates, content types, page sequences, missing files, and type-specific rules.
-              A one-page work cannot silently contain a stack of pages; a comic cannot skip from <code>003.jpg</code> to
-              <code>005.jpg</code>; invalid metadata should stop the build with an actionable message.
+              The pipeline checks slugs, dates, content types, page order, missing files, and rules for each kind of
+              work. A one-page drawing cannot quietly contain several pages, and a comic cannot skip from
+              <code>003.jpg</code> to <code>005.jpg</code>. The command stops and explains the problem before anything is published.
             </p>
             <p>
-              The production test command runs the complete Next.js build and then tests the rendered HTML. Every push
-              to the main branch repeats content preparation during the build before GitHub Actions publishes the static
-              output. Local convenience and deployment correctness therefore rely on the same pipeline.
+              The production test command builds the full Next.js site and checks the rendered HTML. GitHub Actions
+              repeats the same preparation and tests before it publishes a static export. My local preview and the live
+              site go through the same process.
             </p>
 
             <div class="decision-grid">
               <article class="decision-card">
                 <span>INPUT</span>
-                <h3>Validate at the boundary</h3>
-                <p>The importer rejects bad paths, impossible dates, duplicate slugs, and invalid content shapes early.</p>
+                <h3>Catch bad input before processing</h3>
+                <p>The importer rejects bad paths, impossible dates, duplicate slugs, and invalid content before processing images.</p>
               </article>
               <article class="decision-card">
                 <span>TRANSFORM</span>
-                <h3>Use a temporary directory</h3>
-                <p>Images are prepared away from the final path, then moved into place only after processing succeeds.</p>
+                <h3>Protect the source files</h3>
+                <p>The tool copies the artwork and prepares it in a temporary folder. The original exports stay untouched.</p>
               </article>
               <article class="decision-card">
                 <span>BUILD</span>
-                <h3>Regenerate deterministically</h3>
-                <p>The catalog and thumbnails can be rebuilt from the source folders instead of repaired by hand.</p>
+                <h3>Rebuild generated files</h3>
+                <p>The catalog and thumbnails can be recreated from the comic folders instead of repaired by hand.</p>
               </article>
               <article class="decision-card">
                 <span>DELIVERY</span>
-                <h3>Test the deployed shape</h3>
-                <p>Rendered-output tests catch failures that type checking alone cannot see in a static export.</p>
+                <h3>Test the finished HTML</h3>
+                <p>Rendered output tests catch broken routes and markup that type checking alone would miss.</p>
               </article>
             </div>
           </div>
@@ -236,37 +234,36 @@ npm test</code></pre>
         <section class="case-section" aria-labelledby="bugnut-outcome">
           <span class="case-section-number">05 / Outcome</span>
           <div class="case-section-body">
-            <h2 id="bugnut-outcome">Publishing no longer requires editing the application.</h2>
+            <h2 id="bugnut-outcome">I can publish without editing the app.</h2>
             <p class="lead-copy">
-              A new comic can move from an export folder to the live site through a guided command, a preview, and a
-              push. The public reader stays fast because the final product is statically generated.
+              To publish a comic, I choose its folder, answer a few prompts, check the preview, and push the result. The
+              public reader stays fast because Next.js exports the site as static files.
             </p>
             <p>
-              Building for my own repeated workflow created unusually direct feedback: every unnecessary prompt, unclear
-              error, or manual correction appeared again on the next release. That pressure made the internal tool—not
-              only the visible website—a first-class product.
+              I use this tool whenever I add new work, so annoying prompts and unclear errors do not stay theoretical.
+              If part of the process wastes time, I run into it again on the next comic and have a reason to fix it.
             </p>
 
             <div class="learning-grid">
               <article class="learning-card">
-                <span>LESSON 01</span>
-                <h3>Automate the repeated judgment</h3>
-                <p>The largest payoff came from removing a workflow I actually perform, not automating for its own sake.</p>
+                <span>WORKFLOW</span>
+                <h3>One command replaced my checklist</h3>
+                <p>The importer saved time because it replaced a checklist I was already using for every comic.</p>
               </article>
               <article class="learning-card">
-                <span>LESSON 02</span>
-                <h3>Derive instead of duplicate</h3>
-                <p>Page counts, thumbnails, and spreads are more reliable when computed from canonical source files.</p>
+                <span>DATA</span>
+                <h3>The files provide the page count</h3>
+                <p>Page counts, thumbnails, and spread information stay in sync when the tool rebuilds them from the files.</p>
               </article>
               <article class="learning-card">
-                <span>LESSON 03</span>
-                <h3>Error messages are interface design</h3>
-                <p>A command-line tool still needs to explain what failed, what remains safe, and what the user should do next.</p>
+                <span>ERRORS</span>
+                <h3>The importer explains what failed</h3>
+                <p>Useful errors tell me what failed, whether my files are safe, and what I should fix.</p>
               </article>
               <article class="learning-card">
-                <span>LESSON 04</span>
-                <h3>Internal tools shape the product</h3>
-                <p>A pleasant publishing path makes the public site more current, consistent, and sustainable.</p>
+                <span>MAINTENANCE</span>
+                <h3>Publishing is no longer a coding task</h3>
+                <p>An easier publishing process makes it more likely that I will keep the site current.</p>
               </article>
             </div>
           </div>

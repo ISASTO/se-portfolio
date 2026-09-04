@@ -48,7 +48,16 @@ async function localTargetExists(htmlFile, target) {
   }
 }
 
-const htmlFiles = (await walk(projectRoot)).filter((file) => file.endsWith(".html"));
+const siteFiles = await walk(projectRoot);
+const textExtensions = new Set([".css", ".html", ".js", ".json", ".md", ".mjs", ".txt", ".xml", ".yaml", ".yml"]);
+
+for (const file of siteFiles) {
+  if (!textExtensions.has(path.extname(file))) continue;
+  const source = await readFile(file, "utf8");
+  if (source.includes("\u2014")) fail(file, "contains an em dash");
+}
+
+const htmlFiles = siteFiles.filter((file) => file.endsWith(".html"));
 
 for (const file of htmlFiles) {
   const source = await readFile(file, "utf8");

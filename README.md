@@ -1,12 +1,12 @@
-# Isaac Stoltz — Software Engineering Portfolio
+# Isaac Stoltz | Software Engineering Portfolio
 
 A lightweight, hand-built portfolio for selected software engineering work.
 
 ## Projects
 
-- **Movie Master** — static storefront, browser game, Cloudflare Worker API, D1 analytics, and public leaderboards.
-- **Minimal Garmin** — a focused Connect IQ watch face for the Garmin Forerunner 955.
-- **Bugnut** — a Next.js comic reader with an automated image-processing and publishing pipeline.
+- **Movie Master:** Static storefront, browser game, Cloudflare Worker API, D1 analytics, and public leaderboards.
+- **Minimal Garmin:** A focused Connect IQ watch face for the Garmin Forerunner 955.
+- **Bugnut:** A Next.js comic reader with an automated image-processing and publishing pipeline.
 
 ## Local preview
 

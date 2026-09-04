@@ -110,6 +110,6 @@ copyButton?.addEventListener("click", async () => {
     await copyText(email);
     showCopyStatus("Email copied");
   } catch {
-    showCopyStatus("Could not copy—select the address instead");
+    showCopyStatus("Could not copy. Select the address instead.");
   }
 });

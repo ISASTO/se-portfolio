@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Movie Master case study: evolving a static business site into a browser game, analytics system, and public leaderboards."
+      content="How I grew Movie Master from a static business site into a browser game with analytics and public leaderboards."
     />
     <meta name="theme-color" content="#0a0a0a" />
-    <title>Movie Master — Isaac Stoltz</title>
+    <title>Movie Master | Isaac Stoltz</title>
     <script>document.documentElement.classList.add("js")</script>
     <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../../styles.css" />
@@ -51,8 +51,8 @@
             <a class="case-button" href="https://github.com/ISASTO/movie-master">View source <span aria-hidden="true">↗</span></a>
           </div>
           <p>
-            Turning an eccentric real-world microbusiness into a responsive web product, then evolving the
-            simplest possible architecture as actual use created new requirements.
+            I built the website and supporting software for a real movie recommendation business. It began as a
+            simple static page. New features came later, when customers and players gave me a reason to add them.
           </p>
         </div>
       </header>
@@ -84,31 +84,34 @@
           </div>
           <div>
             <dt>Product state</dt>
-            <dd>Live<br />Used by paying customers</dd>
+            <dd>Live<br />Accepting paid orders</dd>
           </div>
         </dl>
 
         <section class="case-section" aria-labelledby="movie-problem">
           <span class="case-section-number">01 / Problem</span>
           <div class="case-section-body">
-            <h2 id="movie-problem">A business with no software—and no ordinary brand.</h2>
+            <h2 id="movie-problem">Movie Master needed a home online.</h2>
             <p class="lead-copy">
-              Movie Master began with a real person selling personalized movie recommendations. The service had
-              customers, strong opinions, and a completely singular voice, but almost no technical infrastructure.
+              Movie Master is a real person who sells personalized movie recommendations. I found his Facebook
+              Marketplace listing, bought a package, and eventually offered to build him a website.
             </p>
             <p>
-              I set out to make the business legible and usable online without sanding off everything that made it
-              memorable. That created a product problem more interesting than a conventional student brief: the site
-              needed to be credible enough to transact through, but a generic polished landing page would have made
-              the underlying idea less compelling.
+              The service already had a memorable personality. What it lacked was a clear online home. I needed to
+              explain the packages, make it easy to contact him, and keep the odd, earnest style that made the listing
+              interesting in the first place.
             </p>
-            <h3>The working constraints</h3>
+            <p>
+              A conventional startup design would have missed the point. I cleaned up the structure and purchase
+              path without making Movie Master sound or look like a different business.
+            </p>
+            <h3>What I was working with</h3>
             <ul>
-              <li>An extremely small infrastructure budget.</li>
-              <li>A nontechnical collaborator and requirements that changed through conversation.</li>
-              <li>Real customers on both desktop and mobile.</li>
-              <li>A visual identity that needed to feel earnest, unusual, and unmistakably specific.</li>
-              <li>New functionality that could not make the basic storefront fragile.</li>
+              <li>Hosting had to cost almost nothing.</li>
+              <li>The owner is nontechnical, and details often changed through ordinary conversation.</li>
+              <li>Customers needed a straightforward experience on phones and computers.</li>
+              <li>The site had to sound like Movie Master, not a generic online service.</li>
+              <li>New backend features could not make the basic storefront less reliable.</li>
             </ul>
           </div>
         </section>
@@ -116,43 +119,43 @@
         <section class="case-section" aria-labelledby="movie-decisions">
           <span class="case-section-number">02 / Decisions</span>
           <div class="case-section-body">
-            <h2 id="movie-decisions">Let complexity arrive only when a feature earns it.</h2>
+            <h2 id="movie-decisions">I kept the first version static.</h2>
             <p class="lead-copy">
-              The first version did not need an application framework or a database. It needed to load quickly,
-              explain the offer, and work reliably. I kept the core static and added stateful services at the edge.
+              The first version had no reason to use a framework or database. Plain HTML, CSS, and JavaScript gave me
+              a fast site with free hosting and very little to maintain.
             </p>
 
             <div class="decision-grid">
               <article class="decision-card">
                 <span>01</span>
-                <h3>Preserve the voice</h3>
+                <h3>Make it feel like Movie Master</h3>
                 <p>
-                  The visual system uses loud display type, testimonials, and deliberately heightened sales language.
-                  Usability became cleaner while the product’s strange personality stayed intact.
+                  His language, testimonials, and visual taste are part of the product. I made the pages easier to use
+                  without rewriting the business into something bland.
                 </p>
               </article>
               <article class="decision-card">
                 <span>02</span>
-                <h3>Keep the core static</h3>
+                <h3>Stay static where possible</h3>
                 <p>
-                  GitHub Pages serves the storefront and game with almost no operational surface area. Static assets
-                  remain available even if analytics or leaderboard requests fail.
+                  GitHub Pages serves the storefront and game. There is no application server to pay for, monitor, or
+                  restart, and the main site remains available if an API request fails.
                 </p>
               </article>
               <article class="decision-card">
                 <span>03</span>
-                <h3>Add state at the boundary</h3>
+                <h3>Use a small backend</h3>
                 <p>
-                  A Cloudflare Worker and D1 database handle the features that truly require shared state: anonymous
-                  visitor counts, run telemetry, player profiles, and leaderboards.
+                  Visitor counts and public scores needed shared data. I added a Cloudflare Worker and D1 database for
+                  those features instead of rebuilding the rest of the site.
                 </p>
               </article>
               <article class="decision-card">
                 <span>04</span>
-                <h3>Protect the primary experience</h3>
+                <h3>Keep tracking out of the way</h3>
                 <p>
-                  Observability is useful but noncritical. Telemetry calls are isolated so a failed analytics request
-                  cannot interrupt gameplay or prevent a visitor from using the site.
+                  Analytics helps me understand how people use the site, but it is not part of the game. Failed
+                  tracking requests are ignored so they cannot interrupt a run.
                 </p>
               </article>
             </div>
@@ -169,65 +172,61 @@
         <section class="case-section" aria-labelledby="movie-game">
           <span class="case-section-number">03 / Game</span>
           <div class="case-section-body">
-            <h2 id="movie-game">A hidden extra became its own engineering system.</h2>
+            <h2 id="movie-game">The hidden game became a project of its own.</h2>
             <p class="lead-copy">
-              What began as a small browser diversion grew into a real-time game with distinct modes, persistent
-              records, controller support, instrumentation, and shared leaderboards.
+              I added a small popcorn-catching game as an Easter egg. It was fun to work on, so I kept going. The game
+              now has two modes, saved records, controller support, analytics, and public leaderboards.
             </p>
             <p>
-              The game runs a continuous update/render loop and manages moving entities, collision detection,
-              projectiles, power-ups, escalating difficulty, pausing, and local statistics. Standard and Hardcore
-              modes share most of the system while applying different failure rules.
+              A continuous update and render loop handles movement, collisions, projectiles, power-ups, difficulty,
+              pausing, and local statistics. Standard and Hardcore modes use the same core systems but apply different
+              rules when the player misses popcorn or takes a hit.
             </p>
             <p>
-              Input became one of the best examples of finishing the last ten percent. Keyboard, pointer, and gamepad
-              behavior need different handling. Controller input applies dead zones to avoid drift; if the active
-              controller disconnects, the game pauses instead of silently leaving the player unable to respond.
+              Input took more work than I expected. Keyboard, pointer, and gamepad controls each behave differently.
+              The controller code filters out stick drift with a dead zone. If the active controller disconnects, the
+              game pauses instead of leaving the player stuck in a live run.
             </p>
-            <h3>Public leaderboards without accounts</h3>
+            <h3>Leaderboards without a login screen</h3>
             <p>
-              I wanted a returning player to keep a name and improve one personal best without building a complete
-              authentication product. A browser-held anonymous identity links the local player to validated daily and
-              all-time records. The Worker normalizes names and scores before anything becomes public, while the UI
-              can show the leaders and the player’s immediate neighborhood in the ranking.
+              Requiring accounts would have been too much friction for a small browser game. The browser keeps an
+              anonymous player ID and the name the player entered. The Worker validates names and scores before they
+              appear on the daily or all-time boards. After a run, the game can also show the scores directly above and
+              below the player.
             </p>
-            <blockquote class="pull-quote">
-              The game taught me that “supports controllers” is a first draft. Disconnects, dead zones, focus loss,
-              menu navigation, and recovery are the feature.
-            </blockquote>
           </div>
         </section>
 
         <section class="case-section" aria-labelledby="movie-evolution">
           <span class="case-section-number">04 / Evolution</span>
           <div class="case-section-body">
-            <h2 id="movie-evolution">Requirements emerged from use.</h2>
+            <h2 id="movie-evolution">Most of the roadmap came from using the site.</h2>
             <p>
-              There was no frozen rubric. Each layer came from an observed need: a clearer offer, a mobile layout
-              problem, a desire to know whether people were visiting, a competitive game, then the reliability and
-              moderation work that public scores require.
+              I did not plan the finished system at the beginning. Each stage answered a current problem. The offer
+              needed to be clearer. The mobile layout needed work. I wanted real visitor numbers. Players needed a
+              reason to come back. Public scores then introduced validation and moderation work.
             </p>
 
             <ol class="timeline">
               <li>
                 <strong>Static business site</strong>
-                <span>Established the offer, voice, calls to action, and automatic GitHub Pages deployment.</span>
+                <span>Put the packages, rules, testimonials, and contact options in one place.</span>
               </li>
               <li>
-                <strong>Responsive product polish</strong>
-                <span>Reworked navigation, testimonials, purchase paths, and mobile behavior around real content.</span>
+                <strong>Responsive rebuild</strong>
+                <span>Reworked navigation, testimonials, purchase links, and phone layouts around the real content.</span>
               </li>
               <li>
                 <strong>Browser game</strong>
-                <span>Added a live game loop, multiple control schemes, modes, progression, and persistent local records.</span>
+                <span>Added the game loop, three control methods, two modes, progression, and saved records.</span>
               </li>
               <li>
-                <strong>Anonymous analytics</strong>
-                <span>Introduced a Worker and D1 when shared visitor and run data finally justified server-side state.</span>
+                <strong>Visitor and game analytics</strong>
+                <span>Added the Worker and D1 once visitor counts and game data needed shared storage.</span>
               </li>
               <li>
-                <strong>Public competition</strong>
-                <span>Added named daily/all-time boards, validation, score neighborhoods, migrations, and backend tests.</span>
+                <strong>Public leaderboards</strong>
+                <span>Added daily and all-time scores, player names, validation, migrations, and backend tests.</span>
               </li>
             </ol>
           </div>
@@ -236,37 +235,36 @@
         <section class="case-section" aria-labelledby="movie-outcome">
           <span class="case-section-number">05 / Outcome</span>
           <div class="case-section-body">
-            <h2 id="movie-outcome">A tiny product that behaves like a real one.</h2>
+            <h2 id="movie-outcome">Where the project stands.</h2>
             <p class="lead-copy">
-              Movie Master is live, supports real paid transactions, records real usage, and has continued to evolve
-              without abandoning its original lightweight core.
+              Movie Master is live and has handled paid orders. The storefront still works as a static site, while the
+              Worker handles visitor data, game analytics, player records, and public scores.
             </p>
             <p>
-              More importantly, it changed how I think about engineering judgment. The most impressive architecture is
-              not the one with the most pieces. It is the one whose pieces correspond to real requirements—and whose
-              failures are contained so the product’s main purpose still works.
+              Once the site launched, the work changed. I had to follow changing requests, diagnose problems I did not
+              anticipate, and decide when a new service was useful enough to justify the extra code.
             </p>
 
             <div class="learning-grid">
               <article class="learning-card">
-                <span>LESSON 01</span>
-                <h3>Personality is a product requirement</h3>
-                <p>A technically cleaner interface can still be wrong if it erases the reason people remember it.</p>
+                <span>DESIGN</span>
+                <h3>I kept his voice intact</h3>
+                <p>The site became easier to use without losing the voice that made people notice the business.</p>
               </article>
               <article class="learning-card">
-                <span>LESSON 02</span>
-                <h3>State belongs where it is needed</h3>
-                <p>A static core can support a surprisingly capable product when stateful services are added deliberately.</p>
+                <span>ARCHITECTURE</span>
+                <h3>The backend came later</h3>
+                <p>The static setup stayed in place until visitor data and leaderboards gave me a concrete reason to add a backend.</p>
               </article>
               <article class="learning-card">
-                <span>LESSON 03</span>
-                <h3>Noncritical systems should fail quietly</h3>
-                <p>Analytics is valuable. It is never valuable enough to break the experience it is measuring.</p>
+                <span>RELIABILITY</span>
+                <h3>Analytics failures stay out of gameplay</h3>
+                <p>A failed analytics request should lose one data point, not a player’s run.</p>
               </article>
               <article class="learning-card">
-                <span>LESSON 04</span>
-                <h3>Real use changes the backlog</h3>
-                <p>Actual players exposed edge cases and priorities that an isolated specification never would have produced.</p>
+                <span>PROCESS</span>
+                <h3>Players found what I missed</h3>
+                <p>Players found input problems and edge cases that I would not have invented while testing alone.</p>
               </article>
             </div>
           </div>

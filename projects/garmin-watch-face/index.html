@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Minimal Garmin case study: designing and optimizing a focused Connect IQ watch face for a constrained wearable."
+      content="How I designed a minimal Connect IQ watch face for my Garmin Forerunner 955."
     />
     <meta name="theme-color" content="#0a0a0a" />
-    <title>Minimal Garmin — Isaac Stoltz</title>
+    <title>Minimal Garmin | Isaac Stoltz</title>
     <script>document.documentElement.classList.add("js")</script>
     <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../../styles.css" />
@@ -50,25 +50,21 @@
             <a class="case-button" href="../../#work">All projects <span aria-hidden="true">←</span></a>
           </div>
           <p>
-            A watch face designed around omission: exceptional readability, three pieces of information, and no work
-            the device does not need to perform.
+            I could not find a Garmin face that showed only what I wanted, so I made one. It shows the time, date, and
+            battery percentage, and nothing else.
           </p>
         </div>
       </header>
 
-      <figure class="case-visual watch-stage" data-reveal>
-        <span class="watch-glow" aria-hidden="true"></span>
-        <span class="watch" aria-hidden="true">
-          <span class="watch-button watch-button-one"></span>
-          <span class="watch-button watch-button-two"></span>
-          <span class="watch-button watch-button-three"></span>
-          <span class="watch-face">
-            <span class="watch-date">WED 19</span>
-            <span class="watch-time">0743</span>
-            <span class="watch-battery">87%</span>
-          </span>
-        </span>
-        <figcaption>Interface reconstruction</figcaption>
+      <figure class="case-visual garmin-device-visual" data-reveal>
+        <img
+          src="../../assets/images/garmin-watch-preview.png"
+          alt="Minimal Garmin watch face showing Friday the 4th, 10:09, and a battery value of 100 on a Forerunner 955"
+          width="388"
+          height="543"
+          decoding="async"
+        />
+        <figcaption>Watch face preview for the Forerunner 955</figcaption>
       </figure>
 
       <div class="case-main">
@@ -94,19 +90,20 @@
         <section class="case-section" aria-labelledby="garmin-problem">
           <span class="case-section-number">01 / Problem</span>
           <div class="case-section-body">
-            <h2 id="garmin-problem">Make the smartwatch less smart.</h2>
+            <h2 id="garmin-problem">I wanted less from my smartwatch.</h2>
             <p class="lead-copy">
-              After moving from an Apple Watch to a Garmin, I wanted the device to feel like a durable instrument—not
-              another attention surface. Existing faces either showed too much or compromised the exact hierarchy I wanted.
+              I switched from an Apple Watch to a Garmin because I wanted a watch that felt more like a tool and less
+              like another phone. Most available faces still put far more information on screen than I wanted.
             </p>
             <p>
-              My requirements fit in one sentence: show a four-digit 24-hour time, the day and date, and battery
-              percentage, all in high-contrast white on black. There would be no colon, icons, fitness rings, weather,
-              complications, animation, or seconds.
+              My requirements were specific. I wanted four-digit 24-hour time, the day and date, and an exact battery
+              percentage. Everything would be white on black. I did not want a colon, icons, fitness rings, weather,
+              animation, seconds, or anything that required a tap.
             </p>
             <p>
-              That apparent simplicity made the engineering decisions more visible. On a constrained device, every
-              field has a resource cost, every update has a cadence, and every pixel competes with readability.
+              With only three values on screen, small choices became obvious. Font width affected the largest possible
+              time size. Vertical spacing affected how quickly I could read the face. Update frequency affected how
+              much work the watch performed throughout the day.
             </p>
           </div>
         </section>
@@ -114,42 +111,42 @@
         <section class="case-section" aria-labelledby="garmin-layout">
           <span class="case-section-number">02 / Interface</span>
           <div class="case-section-body">
-            <h2 id="garmin-layout">Every element has one job.</h2>
+            <h2 id="garmin-layout">The hierarchy is simple on purpose.</h2>
             <p class="lead-copy">
-              The time dominates the face. Context sits above it. Device state sits below it. The layout can be read
-              as a hierarchy before any individual character is parsed.
+              The time is by far the largest element. The date sits above it, and the battery sits below it. I can
+              glance at the face and find the right value without scanning a grid of complications.
             </p>
             <div class="decision-grid">
               <article class="decision-card">
                 <span>TIME</span>
                 <h3>Four digits, no colon</h3>
                 <p>
-                  Twenty-four-hour time removes AM/PM, and a fixed four-character block creates a stable silhouette.
-                  Removing the colon recovers horizontal space for larger numerals.
+                  Twenty-four-hour time removes the need for AM or PM. Dropping the colon leaves more room for the
+                  numbers, which matters on a round screen.
                 </p>
               </article>
               <article class="decision-card">
                 <span>DATE</span>
-                <h3>Context without competition</h3>
+                <h3>Day and date together</h3>
                 <p>
-                  The abbreviated weekday and date are small but strongly weighted, centered above the time so they
-                  remain easy to find without becoming the first thing seen.
+                  The abbreviated weekday and date stay centered above the time. They are easy to find but small
+                  enough that the time still reads first.
                 </p>
               </article>
               <article class="decision-card">
                 <span>BATTERY</span>
-                <h3>A number, not a metaphor</h3>
+                <h3>Show the exact number</h3>
                 <p>
-                  A percentage is more precise than an icon and needs no interaction. An optional setting allows the
-                  percent sign to be hidden while retaining the value.
+                  A percentage tells me more than a small battery icon. A setting lets me hide the percent sign if I
+                  want an even cleaner display.
                 </p>
               </article>
               <article class="decision-card">
                 <span>COLOR</span>
-                <h3>High contrast by default</h3>
+                <h3>White on black</h3>
                 <p>
-                  White on black maximizes clarity and matches the device’s role, while settings expose color choices
-                  without complicating the default face.
+                  The default has maximum contrast and matches the rest of my watch setup. Color settings are there
+                  for people who want them, but the basic face stays plain.
                 </p>
               </article>
             </div>
@@ -159,31 +156,30 @@
         <section class="case-section" aria-labelledby="garmin-cadence">
           <span class="case-section-number">03 / Rendering</span>
           <div class="case-section-body">
-            <h2 id="garmin-cadence">Not everything changes at the same speed.</h2>
+            <h2 id="garmin-cadence">Each value has its own update schedule.</h2>
             <p class="lead-copy">
-              Treating the entire screen as equally dynamic would be easy—and wasteful. The key optimization was to
-              separate values by how often they can actually change.
+              The time changes every minute. The date changes once a day. Battery percentage moves slowly. I do not
+              format all three values again on every update.
             </p>
 
             <div class="update-cadence" aria-label="Watch face data update cadences">
               <article class="cadence-item">
                 <strong>1 min</strong>
-                <span>Time is the only value that must change on every normal watch-face update.</span>
+                <span>The time is refreshed on every normal watch face update.</span>
               </article>
               <article class="cadence-item">
                 <strong>Periodic</strong>
-                <span>Battery is refreshed on a slower schedule instead of being rebuilt without cause.</span>
+                <span>The battery value is refreshed less often because it changes more slowly.</span>
               </article>
               <article class="cadence-item">
                 <strong>1 day</strong>
-                <span>The displayed date only needs new content when the calendar day changes.</span>
+                <span>The date is rebuilt when the calendar day changes.</span>
               </article>
             </div>
 
             <p>
-              I cache formatted values and reuse them until their source can have changed. Custom text resources are
-              reduced to the fidelity the display requires, keeping the asset footprint controlled. The draw path can
-              then concentrate on placing already-prepared content rather than repeatedly doing formatting work.
+              I cache the formatted strings and reuse them until their source might have changed. I also use 1-bit text
+              assets where full-color images would look the same. The draw method mostly places values prepared earlier.
             </p>
 
             <div class="code-callout" aria-label="Simplified watch-face update strategy">
@@ -200,60 +196,57 @@ draw(cachedDate, cachedTime, cachedBattery);</code></pre>
         <section class="case-section" aria-labelledby="garmin-constraints">
           <span class="case-section-number">04 / Constraints</span>
           <div class="case-section-body">
-            <h2 id="garmin-constraints">Device work makes hidden costs concrete.</h2>
+            <h2 id="garmin-constraints">The simulator was not enough.</h2>
             <p>
-              Connect IQ’s resource system, simulator, packaging flow, and device lifecycle are unlike a browser
-              runtime. Fonts need to be prepared for the target display. Geometry must survive a fixed circular canvas.
-              Code that looks harmless on a desktop deserves scrutiny when it will execute all day on a battery-powered device.
+              Connect IQ handles fonts, resources, packaging, and updates differently from a web project. The round
+              display also gives every line of text a hard width limit. I used the simulator while iterating, then
+              installed each serious version on my Forerunner 955 to check spacing and readability on the real screen.
             </p>
-            <h3>The difficult parts were small and exact</h3>
+            <h3>Most of the work came down to small decisions</h3>
             <ul>
-              <li>Building and loading custom font resources that rendered consistently on-device.</li>
-              <li>Balancing the maximum readable time size against a round display’s narrowing edges.</li>
-              <li>Separating configurable colors from the simplest possible default appearance.</li>
-              <li>Testing the packaged face on the physical Forerunner rather than trusting the simulator alone.</li>
-              <li>Optimizing expected costs without pretending that an unmeasured change guarantees battery savings.</li>
+              <li>Preparing custom fonts that rendered consistently on the watch.</li>
+              <li>Making the time as large as possible without clipping near the curved edges.</li>
+              <li>Adding color options without cluttering the default face.</li>
+              <li>Checking the packaged app on the physical watch instead of relying only on the simulator.</li>
+              <li>Separating sensible optimizations from battery claims I had not measured.</li>
             </ul>
-            <blockquote class="pull-quote">
-              Constraint did not shrink the design problem. It forced every element—and every update—to justify itself.
-            </blockquote>
           </div>
         </section>
 
         <section class="case-section" aria-labelledby="garmin-outcome">
           <span class="case-section-number">05 / Outcome</span>
           <div class="case-section-body">
-            <h2 id="garmin-outcome">A personal tool that disappears into use.</h2>
+            <h2 id="garmin-outcome">It now runs on the watch I wear every day.</h2>
             <p class="lead-copy">
-              The finished face runs on my daily watch and gives me exactly the information I reach for, with no
-              notification-like visual noise and no interaction required.
+              The finished face gives me the three things I check most often. I do not have to open a widget, dismiss
+              anything, or search through extra data.
             </p>
             <p>
-              This project made me more precise about the difference between optimization and measurement. I can show
-              that the implementation avoids unnecessary computation; a controlled long-duration comparison against a
-              stock face is the next step before claiming a quantified battery improvement.
+              I can explain why the code avoids unnecessary formatting and resource work. I have not completed a
+              controlled battery comparison against a stock Garmin face, so I do not claim a measured battery-life
+              improvement. That test is still on my list.
             </p>
 
             <div class="learning-grid">
               <article class="learning-card">
-                <span>LESSON 01</span>
-                <h3>Update frequency is architecture</h3>
-                <p>Data with different lifetimes should not be formatted, cached, or refreshed as if it were identical.</p>
+                <span>CODE</span>
+                <h3>Each value runs on its own schedule</h3>
+                <p>The time, date, and battery do not need the same formatting or refresh schedule.</p>
               </article>
               <article class="learning-card">
-                <span>LESSON 02</span>
-                <h3>Omission is an interface decision</h3>
-                <p>Removing information is valuable when the remaining hierarchy better matches the device’s purpose.</p>
+                <span>INTERFACE</span>
+                <h3>Fewer fields made the time larger</h3>
+                <p>Less information gave me more room for the values I actually wanted to read.</p>
               </article>
               <article class="learning-card">
-                <span>LESSON 03</span>
-                <h3>Hardware is the final environment</h3>
-                <p>A simulator speeds iteration, but visibility, spacing, and resource behavior must survive the actual device.</p>
+                <span>TESTING</span>
+                <h3>The real watch settled the layout</h3>
+                <p>The simulator was useful, but the physical watch exposed spacing and readability issues more clearly.</p>
               </article>
               <article class="learning-card">
-                <span>LESSON 04</span>
-                <h3>Measure before claiming</h3>
-                <p>Reasonable performance decisions are not the same thing as evidence of an end-to-end battery result.</p>
+                <span>MEASUREMENT</span>
+                <h3>I still need a battery benchmark</h3>
+                <p>I need a controlled comparison before attaching a number to the battery impact.</p>
               </article>
             </div>
           </div>

@@ -512,6 +512,13 @@ a {
   transform: rotate(0deg) scale(1.015);
 }
 
+.watch-screen-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 .watch-face {
   display: flex;
   align-items: center;
@@ -815,6 +822,20 @@ a {
 
 .case-visual.watch-stage .watch {
   width: min(42vw, 440px);
+}
+
+.garmin-device-visual {
+  display: grid;
+  min-height: min(72vw, 780px);
+  place-items: center;
+  background: #fff;
+}
+
+.case-visual.garmin-device-visual > img {
+  width: auto;
+  height: min(68vw, 720px);
+  max-height: none;
+  object-fit: contain;
 }
 
 .case-main {
@@ -1624,6 +1645,16 @@ a {
 
   .case-visual.watch-stage .watch {
     width: 70vw;
+  }
+
+  .garmin-device-visual {
+    min-height: 520px;
+  }
+
+  .case-visual.garmin-device-visual > img {
+    width: auto;
+    height: min(125vw, 500px);
+    min-height: 0;
   }
 
   .next-project {
