@@ -66,6 +66,32 @@ document.querySelectorAll("[data-year]").forEach((element) => {
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const revealTargets = document.querySelectorAll("[data-reveal]");
 
+document.querySelectorAll("[data-watch-gallery]").forEach((gallery) => {
+  if (reducedMotion) return;
+
+  const track = gallery.querySelector("[data-watch-track]");
+  const sourceSet = gallery.querySelector("[data-watch-set]");
+  if (!track || !sourceSet) return;
+
+  const duplicateSet = sourceSet.cloneNode(true);
+  duplicateSet.removeAttribute("data-watch-set");
+  duplicateSet.setAttribute("aria-hidden", "true");
+  duplicateSet.querySelectorAll("img").forEach((image) => image.setAttribute("alt", ""));
+  track.append(duplicateSet);
+  gallery.classList.add("is-ready");
+
+  if (!("IntersectionObserver" in window)) {
+    gallery.classList.add("is-running");
+    return;
+  }
+
+  const galleryObserver = new IntersectionObserver(
+    ([entry]) => gallery.classList.toggle("is-running", entry.isIntersecting),
+    { rootMargin: "120px 0px", threshold: 0 },
+  );
+  galleryObserver.observe(gallery);
+});
+
 if (reducedMotion || !("IntersectionObserver" in window)) {
   revealTargets.forEach((target) => target.classList.add("is-visible"));
 } else {

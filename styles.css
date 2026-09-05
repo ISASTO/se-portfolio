@@ -918,18 +918,102 @@ a {
   width: min(42vw, 440px);
 }
 
-.garmin-device-visual {
-  display: grid;
-  min-height: min(72vw, 780px);
-  place-items: center;
+.garmin-variant-gallery {
+  --gallery-gap: clamp(16px, 2vw, 28px);
+  --gallery-half-gap: clamp(8px, 1vw, 14px);
+  padding: clamp(22px, 3vw, 42px) 0 clamp(28px, 4vw, 52px);
+  background: #f3f3f1;
+}
+
+.case-visual.garmin-variant-gallery > figcaption {
+  position: static;
+  display: flex;
+  width: var(--content);
+  margin: 0 auto clamp(20px, 2.5vw, 34px);
+  padding: 0;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  background: transparent;
+  color: #111;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+.garmin-variant-gallery figcaption span {
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.garmin-variant-gallery figcaption small {
+  color: #5f5f5a;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.garmin-variant-window {
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-color: #777 transparent;
+  scrollbar-width: thin;
+}
+
+.garmin-variant-gallery.is-ready .garmin-variant-window {
+  overflow: hidden;
+}
+
+.garmin-variant-track {
+  display: flex;
+  width: max-content;
+  gap: var(--gallery-gap);
+}
+
+.garmin-variant-gallery.is-ready .garmin-variant-track {
+  animation: garmin-variant-scroll 52s linear infinite;
+  animation-play-state: paused;
+  will-change: transform;
+}
+
+.garmin-variant-gallery.is-ready.is-running .garmin-variant-track {
+  animation-play-state: running;
+}
+
+.garmin-variant-gallery.is-ready:hover .garmin-variant-track,
+.garmin-variant-gallery.is-ready:focus-within .garmin-variant-track {
+  animation-play-state: paused;
+}
+
+.garmin-variant-set {
+  display: flex;
+  padding-left: var(--gallery-gap);
+  gap: var(--gallery-gap);
+}
+
+.garmin-variant-frame {
+  position: relative;
+  width: clamp(230px, 23vw, 330px);
+  aspect-ratio: 372 / 527;
+  flex: 0 0 auto;
+  overflow: hidden;
   background: #fff;
 }
 
-.case-visual.garmin-device-visual > img {
-  width: auto;
-  height: min(68vw, 720px);
-  max-height: none;
-  object-fit: contain;
+.garmin-variant-frame img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--source-width);
+  max-width: none;
+  height: auto;
+  transform: translate(var(--source-x), var(--source-y));
+}
+
+@keyframes garmin-variant-scroll {
+  to {
+    transform: translateX(calc(-50% - var(--gallery-half-gap)));
+  }
 }
 
 .case-main {
@@ -1792,14 +1876,14 @@ a {
     width: 70vw;
   }
 
-  .garmin-device-visual {
-    min-height: 520px;
+  .case-visual.garmin-variant-gallery > figcaption {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
   }
 
-  .case-visual.garmin-device-visual > img {
-    width: auto;
-    height: min(125vw, 500px);
-    min-height: 0;
+  .garmin-variant-frame {
+    width: min(72vw, 285px);
   }
 
   .next-project {
@@ -1823,6 +1907,15 @@ a {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+  }
+
+  .garmin-variant-gallery.is-ready .garmin-variant-window {
+    overflow-x: auto;
+  }
+
+  .garmin-variant-gallery.is-ready .garmin-variant-track {
+    animation: none;
+    transform: none;
   }
 }
 
