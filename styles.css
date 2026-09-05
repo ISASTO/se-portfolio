@@ -922,7 +922,7 @@ a {
   --gallery-gap: clamp(16px, 2vw, 28px);
   --gallery-half-gap: clamp(8px, 1vw, 14px);
   padding: clamp(22px, 3vw, 42px) 0 clamp(28px, 4vw, 52px);
-  background: #f3f3f1;
+  background: #fff;
 }
 
 .case-visual.garmin-variant-gallery > figcaption {
@@ -971,18 +971,8 @@ a {
 }
 
 .garmin-variant-gallery.is-ready .garmin-variant-track {
-  animation: garmin-variant-scroll 52s linear infinite;
-  animation-play-state: paused;
+  animation: garmin-variant-scroll 80s linear infinite;
   will-change: transform;
-}
-
-.garmin-variant-gallery.is-ready.is-running .garmin-variant-track {
-  animation-play-state: running;
-}
-
-.garmin-variant-gallery.is-ready:hover .garmin-variant-track,
-.garmin-variant-gallery.is-ready:focus-within .garmin-variant-track {
-  animation-play-state: paused;
 }
 
 .garmin-variant-set {

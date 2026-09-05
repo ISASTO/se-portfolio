@@ -79,17 +79,6 @@ document.querySelectorAll("[data-watch-gallery]").forEach((gallery) => {
   duplicateSet.querySelectorAll("img").forEach((image) => image.setAttribute("alt", ""));
   track.append(duplicateSet);
   gallery.classList.add("is-ready");
-
-  if (!("IntersectionObserver" in window)) {
-    gallery.classList.add("is-running");
-    return;
-  }
-
-  const galleryObserver = new IntersectionObserver(
-    ([entry]) => gallery.classList.toggle("is-running", entry.isIntersecting),
-    { rootMargin: "120px 0px", threshold: 0 },
-  );
-  galleryObserver.observe(gallery);
 });
 
 if (reducedMotion || !("IntersectionObserver" in window)) {
