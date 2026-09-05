@@ -279,8 +279,8 @@
                 <span>The time string is formatted again when the minute changes.</span>
               </article>
               <article class="cadence-item">
-                <strong>1 hour</strong>
-                <span>The date and battery are sampled and formatted on the hour.</span>
+                <strong>On change</strong>
+                <span>Garmin reports a new battery value through its native complication API.</span>
               </article>
               <article class="cadence-item">
                 <strong>Each call</strong>
@@ -289,18 +289,29 @@
             </div>
 
             <p>
-              The normal update path makes one clock query, then reuses the cached time, date, and battery strings when
-              their refresh boundary has not arrived. The bitmap fonts are hard-edged 1-bit resources, and they stay
-              loaded outside the screen-update hot path.
+              The normal update path makes one clock query. It reformats the time when the minute changes and rebuilds
+              the date once per hour. Battery updates take a different route. The app subscribes to Garmin’s battery
+              complication when it starts, caches each value Garmin publishes, and requests a screen update only when
+              that value changes.
+            </p>
+            <p>
+              When the face becomes visible, it refreshes the cached battery immediately so the first glance after
+              charging is current. If the complication subscription is unavailable, the app falls back to reading
+              <code>System.getSystemStats()</code> once per hour. Changing whether the percent sign is shown only
+              reformats the cached value and does not trigger another battery query.
             </p>
 
             <div class="code-callout" aria-label="Simplified watch-face update strategy">
               <pre><code>// Simplified rendering strategy
-if (minuteChanged) formatTime();
-if (hourChanged) {
-  formatDate();
-  formatBattery();
+onStart() subscribeToBatteryChanges();
+
+onBatteryChanged() {
+  cacheBatteryValue();
+  requestUpdate();
 }
+
+if (minuteChanged) formatTime();
+if (hourChanged) formatDate();
 
 draw(cachedDate, cachedTime, cachedBattery);</code></pre>
             </div>
@@ -320,7 +331,7 @@ draw(cachedDate, cachedTime, cachedBattery);</code></pre>
               One attempted battery optimization looked reasonable in the simulator: skip a draw when the visible
               values had not changed. On the watch, that could leave the screen black after a gesture. The hardware
               expects a complete frame on every update callback. I changed the design so every callback draws the
-              full frame, while the code avoids repeating the clock formatting, battery lookup, date lookup, and font
+              full frame, while the code avoids repeating clock formatting, date lookup, battery polling, and font
               loading behind it.
             </p>
             <h3>Most of the work came down to small decisions</h3>
@@ -351,8 +362,8 @@ draw(cachedDate, cachedTime, cachedBattery);</code></pre>
             <div class="learning-grid">
               <article class="learning-card">
                 <span>CODE</span>
-                <h3>Each value runs on its own schedule</h3>
-                <p>The time, date, and battery do not need the same formatting or refresh schedule.</p>
+                <h3>Battery updates arrive as events</h3>
+                <p>The face listens for real battery changes instead of polling for a value that usually stays the same.</p>
               </article>
               <article class="learning-card">
                 <span>INTERFACE</span>
