@@ -86,6 +86,17 @@ for (const file of htmlFiles) {
     }
   }
 
+  const externalLinks = [...source.matchAll(/<a\b[^>]*\bhref="https?:\/\/[^"]+"[^>]*>[\s\S]*?<\/a>/g)];
+  for (const [link] of externalLinks) {
+    const openingTag = link.slice(0, link.indexOf(">") + 1);
+    if (!/\starget="_blank"/.test(openingTag)) fail(file, "external link must open in a new tab");
+    const rel = openingTag.match(/\srel="([^"]*)"/)?.[1].split(/\s+/) ?? [];
+    if (!rel.includes("noopener") || !rel.includes("noreferrer")) {
+      fail(file, "external link is missing safe rel attributes");
+    }
+    if (!link.includes("opens in a new tab")) fail(file, "external link is missing a new-tab notice");
+  }
+
   const targets = [...source.matchAll(/(?:href|src)="([^"]+)"/g)].map((match) => match[1]);
   for (const target of targets) {
     if (/^(?:https?:|mailto:|tel:|data:|#)/.test(target)) continue;
