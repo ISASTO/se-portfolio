@@ -510,6 +510,43 @@ a {
   align-items: center;
 }
 
+.project-demos {
+  display: grid;
+  margin-top: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+  gap: 12px;
+}
+
+.project-demos > a {
+  display: flex;
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  flex-direction: column;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.project-demos > a:hover,
+.project-demos > a:focus-visible {
+  border-color: var(--acid);
+}
+
+.project-demos strong {
+  color: var(--text);
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 0.23em;
+}
+
+.project-demos > a > span:not(.sr-only) {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
 .arrow-link {
   color: var(--text);
 }
