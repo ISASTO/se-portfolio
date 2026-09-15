@@ -108,6 +108,19 @@ document.querySelectorAll("[data-watch-gallery]").forEach((gallery) => {
       applyMotionPreference();
     }
   });
+  viewport.addEventListener("keydown", (event) => {
+    if (!(paused || motionPreference.matches)) return;
+    const step = sourceSet.firstElementChild.getBoundingClientRect().width + parseFloat(getComputedStyle(sourceSet).columnGap);
+    const destinations = {
+      ArrowLeft: viewport.scrollLeft - step,
+      ArrowRight: viewport.scrollLeft + step,
+      Home: 0,
+      End: viewport.scrollWidth - viewport.clientWidth,
+    };
+    if (!(event.key in destinations)) return;
+    event.preventDefault();
+    viewport.scrollLeft = destinations[event.key];
+  });
   motionPreference.addEventListener("change", applyMotionPreference);
   applyMotionPreference();
 });
