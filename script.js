@@ -63,22 +63,53 @@ document.querySelectorAll("[data-year]").forEach((element) => {
   element.textContent = String(new Date().getFullYear());
 });
 
-const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+const reducedMotion = motionPreference.matches;
 const revealTargets = document.querySelectorAll("[data-reveal]");
 
 document.querySelectorAll("[data-watch-gallery]").forEach((gallery) => {
-  if (reducedMotion) return;
-
   const track = gallery.querySelector("[data-watch-track]");
   const sourceSet = gallery.querySelector("[data-watch-set]");
-  if (!track || !sourceSet) return;
+  const toggle = gallery.querySelector("[data-watch-toggle]");
+  const viewport = gallery.querySelector(".garmin-variant-window");
+  if (!track || !sourceSet || !toggle || !viewport) return;
 
   const duplicateSet = sourceSet.cloneNode(true);
   duplicateSet.removeAttribute("data-watch-set");
   duplicateSet.setAttribute("aria-hidden", "true");
   duplicateSet.querySelectorAll("img").forEach((image) => image.setAttribute("alt", ""));
   track.append(duplicateSet);
-  gallery.classList.add("is-ready");
+  let paused = false;
+
+  function applyMotionPreference() {
+    const manual = paused || motionPreference.matches;
+    gallery.classList.toggle("is-ready", !motionPreference.matches);
+    gallery.classList.toggle("is-paused", manual);
+    duplicateSet.hidden = manual;
+    toggle.hidden = motionPreference.matches;
+    toggle.textContent = paused ? "Resume gallery" : "Pause gallery";
+    viewport.setAttribute("aria-label", manual
+      ? "Typeface 955 configurations. Scroll horizontally to inspect all nine previews."
+      : "Typeface 955 configurations. Pause the gallery to inspect the previews.");
+  }
+
+  toggle.addEventListener("click", () => {
+    const cycleWidth = sourceSet.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap);
+    if (!paused) {
+      const transform = getComputedStyle(track).transform;
+      const offset = transform === "none" ? 0 : -new DOMMatrixReadOnly(transform).m41;
+      paused = true;
+      applyMotionPreference();
+      viewport.scrollLeft = offset % cycleWidth;
+    } else {
+      track.style.animationDelay = `${-80 * viewport.scrollLeft / cycleWidth}s`;
+      viewport.scrollLeft = 0;
+      paused = false;
+      applyMotionPreference();
+    }
+  });
+  motionPreference.addEventListener("change", applyMotionPreference);
+  applyMotionPreference();
 });
 
 if (reducedMotion || !("IntersectionObserver" in window)) {

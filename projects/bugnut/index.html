@@ -8,6 +8,14 @@
       content="How I built a Next.js comic reader and a command-line tool that prepares new comics for publication."
     />
     <meta name="theme-color" content="#0a0a0a" />
+    <link rel="canonical" href="https://isaacstoltz.com/projects/bugnut/" />
+    <meta property="og:url" content="https://isaacstoltz.com/projects/bugnut/" />
+    <meta property="og:image" content="https://isaacstoltz.com/assets/images/portfolio-preview.jpg" />
+    <meta property="og:image:alt" content="Isaac Stoltz, software engineering portfolio" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:title" content="Bugnut | Isaac Stoltz" />
+    <meta property="og:description" content="How I built a Next.js comic reader and a command-line tool that prepares new comics for publication." />
+    <meta property="og:type" content="website" />
     <title>Bugnut | Isaac Stoltz</title>
     <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../../styles.css" />
@@ -54,20 +62,6 @@
             wanted as the collection grew. The site now holds 14 works and 94 pages.
           </p>
         </div>
-      </header>
-
-      <figure class="case-visual bugnut-contact-sheet" data-reveal>
-        <img
-          src="https://raw.githubusercontent.com/ISASTO/bugnut-art/main/public/mini-comics-contact-sheet.jpg"
-          alt="Contact sheet showing a collection of hand-drawn Bugnut mini-comic covers"
-          width="1666"
-          height="1249"
-          decoding="async"
-        />
-        <figcaption>Artwork processed and published through Bugnut</figcaption>
-      </figure>
-
-      <div class="case-main">
         <dl class="case-facts" data-reveal>
           <div>
             <dt>Role</dt>
@@ -86,6 +80,20 @@
             <dd>14 works<br />94 pages</dd>
           </div>
         </dl>
+      </header>
+
+      <figure class="case-visual bugnut-contact-sheet" data-reveal>
+        <img
+          src="../../assets/images/bugnut-covers.jpg"
+          alt="Contact sheet showing a collection of hand-drawn Bugnut mini-comic covers"
+          width="1666"
+          height="1249"
+          decoding="async"
+        />
+        <figcaption>Artwork processed and published through Bugnut</figcaption>
+      </figure>
+
+      <div class="case-main">
 
         <nav class="case-toc" aria-label="Case study sections" data-reveal>
           <span>Jump to</span>
@@ -137,6 +145,10 @@
               open, returns focus to the launch control when closed, and preloads the next page group so navigation
               feels immediate without downloading the entire comic at once.
             </p>
+            <figure class="evidence-figure">
+              <img src="../../assets/images/bugnut-reader.jpg" alt="Bugnut’s reader displaying pages 1 and 2 of Feeding Time side by side, with page navigation and fullscreen controls" width="1363" height="936" loading="lazy" />
+              <figcaption>Feeding Time in the desktop reader. The same comic uses a single-page sequence on smaller screens.</figcaption>
+            </figure>
           </div>
         </section>
 
@@ -239,28 +251,6 @@ npm test</code></pre>
               site go through the same process.
             </p>
 
-            <div class="decision-grid">
-              <article class="decision-card">
-                <span>INPUT</span>
-                <h3>Catch bad input before processing</h3>
-                <p>The importer rejects bad paths, impossible dates, duplicate slugs, and invalid content before processing images.</p>
-              </article>
-              <article class="decision-card">
-                <span>TRANSFORM</span>
-                <h3>Protect the source files</h3>
-                <p>The tool copies the artwork and prepares it in a temporary folder. The original exports stay untouched.</p>
-              </article>
-              <article class="decision-card">
-                <span>BUILD</span>
-                <h3>Rebuild generated files</h3>
-                <p>The catalog and thumbnails can be recreated from the comic folders instead of repaired by hand.</p>
-              </article>
-              <article class="decision-card">
-                <span>DELIVERY</span>
-                <h3>Test the finished HTML</h3>
-                <p>Rendered output tests catch broken routes and markup that type checking alone would miss.</p>
-              </article>
-            </div>
           </div>
         </section>
 
@@ -274,37 +264,14 @@ npm test</code></pre>
               site as static files.
             </p>
             <p>
-              I use this tool whenever I add new work, so annoying prompts and unclear errors do not stay theoretical.
-              If part of the process wastes time, I run into it again on the next comic and have a reason to fix it.
+              I use the importer for each new comic. If a prompt is confusing or a step takes too long, I encounter
+              the same problem on the next upload and can fix it in the tool.
             </p>
             <p>
-              The site is both an archive and part of the small physical-comics operation around it. Readers can move
-              from a free digital comic to the <a href="https://bugnut.bigcartel.com/" target="_blank" rel="noopener noreferrer">Bugnut shop <span class="sr-only">(opens in a new tab)</span></a>, while the same
-              source folders and publishing checks keep the growing archive consistent.
+              Readers can read the comics online for free and buy printed copies from the
+              <a href="https://bugnut.bigcartel.com/" target="_blank" rel="noopener noreferrer">Bugnut shop <span class="sr-only">(opens in a new tab)</span></a>.
             </p>
 
-            <div class="learning-grid">
-              <article class="learning-card">
-                <span>WORKFLOW</span>
-                <h3>One command replaced my checklist</h3>
-                <p>The importer saved time because it replaced a checklist I was already using for every comic.</p>
-              </article>
-              <article class="learning-card">
-                <span>DATA</span>
-                <h3>The files provide the page count</h3>
-                <p>Page counts, thumbnails, and spread information stay in sync when the tool rebuilds them from the files.</p>
-              </article>
-              <article class="learning-card">
-                <span>ERRORS</span>
-                <h3>The importer explains what failed</h3>
-                <p>Useful errors tell me what failed, whether my files are safe, and what I should fix.</p>
-              </article>
-              <article class="learning-card">
-                <span>MAINTENANCE</span>
-                <h3>Publishing is no longer a coding task</h3>
-                <p>An easier publishing process makes it more likely that I will keep the site current.</p>
-              </article>
-            </div>
           </div>
         </section>
       </div>
@@ -313,7 +280,7 @@ npm test</code></pre>
     <a class="next-project" href="../movie-master/">
       <span>Return to case study 01</span>
       <strong>Movie Master</strong>
-      <b aria-hidden="true">↗</b>
+      <b aria-hidden="true">→</b>
     </a>
 
     <footer class="site-footer">

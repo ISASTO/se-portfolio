@@ -326,12 +326,12 @@ a {
 }
 
 .work-section {
-  padding-block: clamp(110px, 13vw, 190px);
+  padding-block: clamp(64px, 8vw, 100px);
 }
 
 .section-heading {
   display: grid;
-  margin-bottom: clamp(74px, 9vw, 130px);
+  margin-bottom: clamp(40px, 5vw, 64px);
   grid-template-columns: 1fr 2fr;
   align-items: start;
   gap: 40px;
@@ -676,7 +676,7 @@ a {
 
 .about-section {
   display: grid;
-  padding-block: clamp(120px, 15vw, 220px);
+  padding-block: clamp(64px, 8vw, 100px);
   grid-template-columns: 1fr 2fr;
   gap: 40px;
 }
@@ -711,14 +711,14 @@ a {
 }
 
 .contact-section {
-  padding-block: clamp(100px, 12vw, 180px);
+  padding-block: clamp(64px, 8vw, 100px);
   border-top: 1px solid var(--line);
 }
 
 .contact-section h2 {
   margin-top: 36px;
-  font-size: clamp(52px, 8vw, 112px);
-  line-height: 0.94;
+  font-size: clamp(38px, 5vw, 68px);
+  line-height: 1.08;
 }
 
 .contact-note {
@@ -833,8 +833,8 @@ a {
 .case-hero {
   width: var(--content);
   margin-inline: auto;
-  padding-top: calc(var(--header-height) + clamp(90px, 12vw, 170px));
-  padding-bottom: clamp(72px, 10vw, 140px);
+  padding-top: calc(var(--header-height) + 44px);
+  padding-bottom: 32px;
 }
 
 .case-kicker {
@@ -844,21 +844,21 @@ a {
 
 .case-title {
   max-width: 1200px;
-  margin: clamp(44px, 7vw, 90px) 0 40px;
-  font-size: clamp(64px, 12vw, 176px);
+  margin: 32px 0;
+  font-size: clamp(58px, 8vw, 108px);
   font-weight: 850;
   letter-spacing: -0.075em;
   line-height: 0.84;
 }
 
 .case-title.long-title {
-  font-size: clamp(58px, 9.8vw, 148px);
+  font-size: clamp(52px, 8vw, 108px);
 }
 
 .case-deck {
   display: grid;
   grid-template-columns: 1fr 1.45fr;
-  gap: 50px;
+  gap: 28px;
   align-items: start;
 }
 
@@ -866,7 +866,7 @@ a {
   max-width: 740px;
   margin: 0;
   color: #d2cfc7;
-  font-size: clamp(21px, 2.1vw, 30px);
+  font-size: clamp(19px, 1.8vw, 24px);
   letter-spacing: -0.02em;
   line-height: 1.45;
 }
@@ -897,8 +897,8 @@ a {
 
 .case-visual {
   position: relative;
-  width: 100%;
-  margin: 0;
+  width: min(800px, var(--content));
+  margin: 0 auto;
   overflow: hidden;
   background: var(--surface);
 }
@@ -910,35 +910,34 @@ a {
 }
 
 .movie-sharecard {
-  aspect-ratio: 40 / 21;
+  aspect-ratio: auto;
 }
 
 .case-visual.movie-sharecard > img {
   width: 100%;
-  height: 100%;
+  height: auto;
   min-height: 0;
   max-height: none;
   object-fit: contain;
 }
 
 .bugnut-contact-sheet {
-  aspect-ratio: 1666 / 1249;
+  width: min(640px, var(--content));
+  aspect-ratio: auto;
   background: #dfcfb0;
 }
 
 .case-visual.bugnut-contact-sheet > img {
   width: 100%;
-  height: 100%;
+  height: auto;
   min-height: 0;
   max-height: none;
   object-fit: contain;
 }
 
 .case-visual figcaption {
-  position: absolute;
-  right: 16px;
-  bottom: 14px;
-  padding: 6px 9px;
+  position: static;
+  padding: 12px 16px;
   background: rgba(10, 10, 10, 0.82);
   color: var(--muted);
   font-size: 11px;
@@ -956,6 +955,7 @@ a {
 }
 
 .garmin-variant-gallery {
+  width: 100%;
   --gallery-gap: clamp(16px, 2vw, 28px);
   --gallery-half-gap: clamp(8px, 1vw, 14px);
   padding: clamp(22px, 3vw, 42px) 0 clamp(28px, 4vw, 52px);
@@ -1020,7 +1020,7 @@ a {
 
 .garmin-variant-frame {
   position: relative;
-  width: clamp(230px, 23vw, 330px);
+  width: clamp(190px, 18vw, 250px);
   aspect-ratio: 372 / 527;
   flex: 0 0 auto;
   overflow: hidden;
@@ -1044,12 +1044,12 @@ a {
 }
 
 .case-main {
-  padding-block: clamp(95px, 12vw, 170px);
+  padding-block: 36px 64px;
 }
 
 .case-facts {
   display: grid;
-  margin: 0 0 34px;
+  margin: 32px 0 0;
   padding: 0;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
@@ -1057,8 +1057,8 @@ a {
 }
 
 .case-facts div {
-  min-height: 132px;
-  padding: 26px 24px 24px 0;
+  min-height: 100px;
+  padding: 18px 20px 18px 0;
   border-right: 1px solid var(--line);
 }
 
@@ -1071,7 +1071,7 @@ a {
 }
 
 .case-facts dt {
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   color: var(--faint);
   font-size: 11px;
   font-weight: 800;
@@ -1088,9 +1088,8 @@ a {
 
 .case-toc {
   display: flex;
-  margin: 0 0 clamp(90px, 12vw, 160px);
-  padding-bottom: 28px;
-  border-bottom: 1px solid var(--line);
+  margin: 0 0 24px;
+  padding-bottom: 0;
   flex-wrap: wrap;
   align-items: center;
   gap: 8px 28px;
@@ -1116,10 +1115,10 @@ a {
 
 .case-section {
   display: grid;
-  padding-block: clamp(80px, 10vw, 140px);
+  padding-block: 48px;
   border-top: 1px solid var(--line);
-  grid-template-columns: minmax(160px, 0.65fr) minmax(0, 1.6fr);
-  gap: clamp(42px, 8vw, 120px);
+  grid-template-columns: minmax(140px, 0.3fr) minmax(0, 1fr);
+  gap: 36px;
 }
 
 .case-section-number {
@@ -1138,12 +1137,13 @@ a {
 }
 
 .case-section h2 {
-  margin-bottom: 42px;
-  font-size: clamp(40px, 5.2vw, 70px);
+  margin-bottom: 24px;
+  font-size: clamp(32px, 3.4vw, 46px);
+  line-height: 1.12;
 }
 
 .case-section h3 {
-  margin: 54px 0 15px;
+  margin: 32px 0 12px;
   font-size: clamp(22px, 2.4vw, 31px);
   letter-spacing: -0.03em;
   line-height: 1.2;
@@ -1169,7 +1169,7 @@ a {
 
 .lead-copy {
   color: var(--text) !important;
-  font-size: clamp(23px, 2.5vw, 34px) !important;
+  font-size: clamp(20px, 1.8vw, 24px) !important;
   letter-spacing: -0.025em;
   line-height: 1.45 !important;
 }
@@ -1177,7 +1177,7 @@ a {
 .decision-grid,
 .learning-grid {
   display: grid;
-  margin-top: 58px;
+  margin-top: 28px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
   background: var(--line);
@@ -1186,15 +1186,15 @@ a {
 
 .decision-card,
 .learning-card {
-  min-height: 250px;
-  padding: clamp(26px, 3vw, 42px);
+  min-height: 0;
+  padding: 24px;
   background: var(--bg);
 }
 
 .decision-card span,
 .learning-card span {
   display: block;
-  margin-bottom: 42px;
+  margin-bottom: 16px;
   color: var(--faint);
   font-size: 11px;
   font-weight: 800;
@@ -1689,7 +1689,7 @@ a {
   }
 
   .work-section {
-    padding-block: 92px;
+    padding-block: 56px;
   }
 
   .section-heading {
@@ -1740,7 +1740,7 @@ a {
   }
 
   .about-section {
-    padding-block: 110px;
+    padding-block: 64px;
   }
 
   .about-columns,
@@ -1756,11 +1756,11 @@ a {
   }
 
   .contact-section {
-    padding-block: 90px;
+    padding-block: 64px;
   }
 
   .contact-section h2 {
-    font-size: 50px;
+    font-size: 38px;
   }
 
   .contact-actions {
@@ -1780,7 +1780,7 @@ a {
   }
 
   .case-hero {
-    padding-top: calc(var(--header-height) + 75px);
+    padding-top: calc(var(--header-height) + 28px);
   }
 
   .case-kicker {
@@ -1791,7 +1791,8 @@ a {
 
   .case-title,
   .case-title.long-title {
-    font-size: clamp(59px, 19vw, 104px);
+    font-size: clamp(48px, 12vw, 74px);
+    line-height: 0.98;
   }
 
   .case-deck > p {
@@ -1809,19 +1810,19 @@ a {
   }
 
   .case-main {
-    padding-block: 92px;
+    padding-block: 24px 40px;
   }
 
   .case-facts {
     margin-bottom: 28px;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .case-toc {
-    margin-bottom: 80px;
+    margin-bottom: 24px;
     align-items: flex-start;
-    flex-direction: column;
-    gap: 0;
+    flex-direction: row;
+    gap: 4px 20px;
   }
 
   .case-toc span {
@@ -1832,7 +1833,7 @@ a {
   .case-facts div:not(:first-child),
   .case-facts div:nth-child(3) {
     min-height: auto;
-    padding: 23px 0;
+    padding: 16px 12px 16px 0;
     border-right: 0;
     border-bottom: 1px solid var(--line);
   }
@@ -1842,12 +1843,13 @@ a {
   }
 
   .case-section {
-    padding-block: 78px;
+    padding-block: 36px;
+    gap: 20px;
   }
 
   .case-section h2 {
-    margin-bottom: 32px;
-    font-size: 41px;
+    margin-bottom: 20px;
+    font-size: 32px;
   }
 
   .case-section-body > p,
@@ -1857,7 +1859,7 @@ a {
   }
 
   .lead-copy {
-    font-size: 23px !important;
+    font-size: 20px !important;
   }
 
   .decision-card,
@@ -1946,7 +1948,37 @@ a {
   }
 }
 
+.request-paths {
+  margin-block: 28px;
+  padding: 8px 24px;
+  border-left: 2px solid var(--acid);
+  background: var(--surface);
+  color: #c5c2ba;
+}
+
+.request-paths strong { color: var(--text); }
+.gallery-toggle {
+  flex-shrink: 0;
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid #777;
+  background: #fff;
+  color: #111;
+  cursor: pointer;
+  font: inherit;
+  letter-spacing: normal;
+}
+.gallery-toggle[hidden], .garmin-variant-set[hidden] { display: none; }
+.garmin-variant-gallery.is-paused .garmin-variant-window { overflow-x: auto; }
+.garmin-variant-gallery.is-paused .garmin-variant-track { animation: none; transform: none; }
+.case-visual.garmin-variant-gallery > figcaption { flex-wrap: wrap; }
+.evidence-figure { margin: 28px 0; }
+.evidence-figure img { width: 100%; height: auto; border: 1px solid var(--line-strong); }
+.evidence-figure figcaption { margin-top: 10px; color: var(--muted); font-size: 14px; line-height: 1.5; }
+
 @media print {
+  .js-enhanced [data-reveal] { opacity: 1 !important; transform: none !important; }
+  .gallery-toggle { display: none; }
   :root {
     --bg: #fff;
     --surface: #f3f3f3;

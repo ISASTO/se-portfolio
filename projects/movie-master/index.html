@@ -8,6 +8,14 @@
       content="How I grew Movie Master from a static business site into a browser game with analytics and public leaderboards."
     />
     <meta name="theme-color" content="#0a0a0a" />
+    <link rel="canonical" href="https://isaacstoltz.com/projects/movie-master/" />
+    <meta property="og:url" content="https://isaacstoltz.com/projects/movie-master/" />
+    <meta property="og:image" content="https://isaacstoltz.com/assets/images/portfolio-preview.jpg" />
+    <meta property="og:image:alt" content="Isaac Stoltz, software engineering portfolio" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:title" content="Movie Master | Isaac Stoltz" />
+    <meta property="og:description" content="How I grew Movie Master from a static business site into a browser game with analytics and public leaderboards." />
+    <meta property="og:type" content="website" />
     <title>Movie Master | Isaac Stoltz</title>
     <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../../styles.css" />
@@ -41,9 +49,9 @@
       <header class="case-hero">
         <div class="case-kicker" data-reveal>
           <span>Case study 01</span>
-          <span>Full-stack product · 2024 to present</span>
+          <span>Full-stack product · Ongoing</span>
         </div>
-        <h1 class="case-title long-title" data-reveal>Movie<br />Master</h1>
+        <h1 class="case-title long-title" data-reveal>Movie Master</h1>
         <div class="case-deck" data-reveal>
           <div class="case-actions">
             <a class="case-button primary" href="https://moviemaster.vip/" target="_blank" rel="noopener noreferrer">Visit live site <span aria-hidden="true">↗</span> <span class="sr-only">(opens in a new tab)</span></a>
@@ -54,24 +62,10 @@
             game, analytics, and leaderboards for his movie recommendation business.
           </p>
         </div>
-      </header>
-
-      <figure class="case-visual movie-sharecard" data-reveal>
-        <img
-          src="https://raw.githubusercontent.com/ISASTO/movie-master/main/assets/images/social-preview-1200x630.jpg"
-          alt="Movie Master promotional artwork with a suited figure centered over radiating yellow and red lines"
-          width="1200"
-          height="630"
-          decoding="async"
-        />
-        <figcaption>Movie Master visual identity</figcaption>
-      </figure>
-
-      <div class="case-main">
         <dl class="case-facts" data-reveal>
           <div>
             <dt>Role</dt>
-            <dd>Webmaster + business partner<br />Full-stack engineering</dd>
+            <dd>Design + full-stack development</dd>
           </div>
           <div>
             <dt>Core stack</dt>
@@ -86,6 +80,20 @@
             <dd>Dozens of paid orders<br />2 game modes</dd>
           </div>
         </dl>
+      </header>
+
+      <figure class="case-visual movie-sharecard" data-reveal>
+        <img
+          src="../../assets/images/movie-master-sharecard.jpg"
+          alt="Gold and black Movie Master artwork with Robert’s portrait in an ornate frame"
+          width="1200"
+          height="630"
+          decoding="async"
+        />
+        <figcaption>Movie Master visual identity</figcaption>
+      </figure>
+
+      <div class="case-main">
 
         <nav class="case-toc" aria-label="Case study sections" data-reveal>
           <span>Jump to</span>
@@ -142,7 +150,7 @@
                 <h3>Make it feel like Movie Master</h3>
                 <p>
                   Robert wanted the site colorful, inviting, theatrical, and impossible to miss. I organized the
-                  content without sanding away the style that made the business recognizable. I also designed the
+                  content around that style. I also designed the
                   Movie Master T-shirt, so the type and colors had to work beyond a single web page.
                 </p>
               </article>
@@ -172,17 +180,10 @@
               </article>
             </div>
 
-            <ol class="architecture" aria-label="Movie Master system architecture">
-              <li>Browser <small>Storefront + game</small></li>
-              <li>GitHub Pages <small>Static delivery</small></li>
-              <li>Worker API <small>Validation + routes</small></li>
-              <li>Cloudflare D1 <small>Shared state</small></li>
-            </ol>
-            <p>
-              This let the architecture grow in one direction at a time. The storefront still does not depend on the
-              Worker. If analytics is unavailable, the visitor count may miss an event, but the page and game keep
-              working.
-            </p>
+            <div class="request-paths" aria-label="Movie Master request paths">
+              <p><strong>Browser</strong> loads HTML, CSS, JavaScript, and images from <strong>GitHub Pages</strong>.</p>
+              <p><strong>Browser</strong> sends scores and analytics directly to the <strong>Worker API</strong>, which reads and writes <strong>Cloudflare D1</strong>.</p>
+            </div>
             <h3>Seeing what people actually use</h3>
             <p>
               The analytics dashboard brings site traffic and game activity into one place. I can compare visitor
@@ -192,6 +193,10 @@
             <div class="case-actions">
               <a class="case-button" href="https://moviemaster.vip/analytics/" target="_blank" rel="noopener noreferrer">Explore the analytics dashboard <span aria-hidden="true">↗</span> <span class="sr-only">(opens in a new tab)</span></a>
             </div>
+            <figure class="evidence-figure">
+              <img src="../../assets/images/movie-master-analytics.jpg" alt="Movie Master’s public traffic dashboard showing daily visitors, audience totals, and referral conversion" width="1363" height="936" loading="lazy" />
+              <figcaption>The public analytics overview, captured September 15, 2026. The live dashboard also includes traffic charts and game statistics.</figcaption>
+            </figure>
           </div>
         </section>
 
@@ -231,11 +236,14 @@
             </p>
             <h3>Measure before optimizing</h3>
             <p>
-              As the game grew, guesses about performance became less useful. I built 25 deterministic benchmark
-              scenarios, from an empty scene to extreme entity counts, and compared changes against the same workload.
-              I kept the faster changes and rejected optimizations that moved work around without helping the cases
-              players actually reached.
+              The <a href="https://github.com/ISASTO/movie-master/blob/main/benchmarks/game-performance.js" target="_blank" rel="noopener noreferrer">benchmark suite <span class="sr-only">(opens in a new tab)</span></a>
+              covers 26 deterministic scenarios, from an empty scene to extreme entity counts. It exercises collision
+              checks, controller polling, rendering, and full updates, so changes can be compared against repeatable workloads.
             </p>
+            <figure class="evidence-figure">
+              <img src="../../assets/images/movie-master-game.jpg" alt="Movie Master vs Garbage start screen with mode selection, instructions, and leaderboard access" width="1363" height="936" loading="lazy" />
+              <figcaption>The game’s start screen. Players can choose a mode, check the controls, or open the leaderboards before a run.</figcaption>
+            </figure>
           </div>
         </section>
 
@@ -290,28 +298,6 @@
               justify the extra code.
             </p>
 
-            <div class="learning-grid">
-              <article class="learning-card">
-                <span>DESIGN</span>
-                <h3>I kept his voice intact</h3>
-                <p>The site became easier to use without losing the voice that made people notice the business.</p>
-              </article>
-              <article class="learning-card">
-                <span>ARCHITECTURE</span>
-                <h3>The backend came later</h3>
-                <p>The static setup stayed in place until visitor data and leaderboards gave me a concrete reason to add a backend.</p>
-              </article>
-              <article class="learning-card">
-                <span>RELIABILITY</span>
-                <h3>Analytics failures stay out of gameplay</h3>
-                <p>A failed analytics request should lose one data point, not a player’s run.</p>
-              </article>
-              <article class="learning-card">
-                <span>PROCESS</span>
-                <h3>Players found what I missed</h3>
-                <p>Players found input problems and edge cases that I would not have invented while testing alone.</p>
-              </article>
-            </div>
           </div>
         </section>
       </div>
@@ -320,7 +306,7 @@
     <a class="next-project" href="../garmin-watch-face/">
       <span>Next case study</span>
       <strong>Typeface 955</strong>
-      <b aria-hidden="true">↗</b>
+      <b aria-hidden="true">→</b>
     </a>
 
     <footer class="site-footer">

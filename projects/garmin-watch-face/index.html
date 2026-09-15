@@ -8,6 +8,14 @@
       content="How I designed, optimized, and tested Typeface 955, a distraction-free Garmin watch face."
     />
     <meta name="theme-color" content="#0a0a0a" />
+    <link rel="canonical" href="https://isaacstoltz.com/projects/garmin-watch-face/" />
+    <meta property="og:url" content="https://isaacstoltz.com/projects/garmin-watch-face/" />
+    <meta property="og:image" content="https://isaacstoltz.com/assets/images/portfolio-preview.jpg" />
+    <meta property="og:image:alt" content="Isaac Stoltz, software engineering portfolio" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:title" content="Typeface 955 | Isaac Stoltz" />
+    <meta property="og:description" content="How I designed, optimized, and tested Typeface 955, a distraction-free Garmin watch face." />
+    <meta property="og:type" content="website" />
     <title>Typeface 955 | Isaac Stoltz</title>
     <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../../styles.css" />
@@ -43,7 +51,7 @@
           <span>Case study 02</span>
           <span>Wearable software · 2026</span>
         </div>
-        <h1 class="case-title long-title" data-reveal>Typeface<br />955</h1>
+        <h1 class="case-title long-title" data-reveal>Typeface 955</h1>
         <div class="case-deck" data-reveal>
           <div class="case-actions">
             <a class="case-button" href="../../#work">All projects <span aria-hidden="true">←</span></a>
@@ -54,18 +62,38 @@
             date, and battery, with settings that keep those three values readable.
           </p>
         </div>
+        <dl class="case-facts" data-reveal>
+          <div>
+            <dt>Role</dt>
+            <dd>Interface design<br />Watch-face development</dd>
+          </div>
+          <div>
+            <dt>Platform</dt>
+            <dd>Garmin Connect IQ<br />Monkey C</dd>
+          </div>
+          <div>
+            <dt>Target device</dt>
+            <dd>Garmin<br />Forerunner 955</dd>
+          </div>
+          <div>
+            <dt>Current scope</dt>
+            <dd>260 × 260 display<br />5 font choices</dd>
+          </div>
+        </dl>
       </header>
 
       <figure class="case-visual garmin-variant-gallery" data-watch-gallery data-reveal>
         <figcaption>
-          <span>Typeface 955 on a Forerunner 955</span>
+          <span>Typeface 955 simulator previews</span>
           <small>9 configurations</small>
+          <button type="button" class="gallery-toggle" data-watch-toggle aria-controls="watch-configurations" hidden>Pause gallery</button>
         </figcaption>
         <div
           class="garmin-variant-window"
+          id="watch-configurations"
           tabindex="0"
           role="region"
-          aria-label="Automatically scrolling gallery of Typeface 955 configurations"
+          aria-label="Typeface 955 configurations. Pause the gallery to scroll through the previews."
         >
           <div class="garmin-variant-track" data-watch-track>
             <div class="garmin-variant-set" data-watch-set>
@@ -163,24 +191,6 @@
       </figure>
 
       <div class="case-main">
-        <dl class="case-facts" data-reveal>
-          <div>
-            <dt>Role</dt>
-            <dd>Interface design<br />Device engineering</dd>
-          </div>
-          <div>
-            <dt>Platform</dt>
-            <dd>Garmin Connect IQ<br />Monkey C</dd>
-          </div>
-          <div>
-            <dt>Target device</dt>
-            <dd>Garmin<br />Forerunner 955</dd>
-          </div>
-          <div>
-            <dt>Current scope</dt>
-            <dd>260 × 260 display<br />5 custom typefaces</dd>
-          </div>
-        </dl>
 
         <nav class="case-toc" aria-label="Case study sections" data-reveal>
           <span>Jump to</span>
@@ -257,7 +267,7 @@
             <h3>Settings without turning the face into a dashboard</h3>
             <p>
               I compared several font and battery layouts before choosing the default. The finished face includes five
-              custom typefaces, four date sizes, four battery sizes, optional color controls, and an optional percent
+              font choices, four date sizes, four battery sizes, optional color controls, and an optional percent
               sign. The settings preview updates on the watch, so the user can judge a choice on the real display
               instead of guessing from a list of names.
             </p>
@@ -267,7 +277,7 @@
         <section class="case-section" aria-labelledby="garmin-cadence">
           <span class="case-section-number">03 / Rendering</span>
           <div class="case-section-body">
-            <h2 id="garmin-cadence">The face redraws often, but most of the data does not.</h2>
+            <h2 id="garmin-cadence">Redraw the screen, reuse the data.</h2>
             <p class="lead-copy">
               Garmin can call the face several times after a wrist gesture. The Forerunner 955 still needs a complete
               frame each time, but the strings behind that frame usually have not changed.
@@ -291,8 +301,8 @@
             <p>
               The normal update path makes one clock query. It reformats the time when the minute changes and rebuilds
               the date once per hour. Battery updates take a different route. The app subscribes to Garmin’s battery
-              complication when it starts, caches each value Garmin publishes, and requests a screen update only when
-              that value changes.
+              complication when it starts. When Garmin sends a battery event, the app refreshes the cached value and
+              requests a screen update.
             </p>
             <p>
               When the face becomes visible, it refreshes the cached battery immediately so the first glance after
@@ -325,7 +335,7 @@ draw(cachedDate, cachedTime, cachedBattery);</code></pre>
             <p>
               Connect IQ handles fonts, resources, packaging, and updates differently from a web project. The round
               display also gives every line of text a hard width limit. I used the simulator while iterating, then
-              installed each serious version on my Forerunner 955 to check spacing and readability on the real screen.
+              tested major changes on my Forerunner 955 to check spacing and readability on the real screen.
             </p>
             <p>
               One attempted battery optimization looked reasonable in the simulator: skip a draw when the visible
@@ -334,53 +344,24 @@ draw(cachedDate, cachedTime, cachedBattery);</code></pre>
               full frame, while the code avoids repeating clock formatting, date lookup, battery polling, and font
               loading behind it.
             </p>
-            <h3>Most of the work came down to small decisions</h3>
-            <ul>
-              <li>Preparing custom fonts that rendered consistently on the watch.</li>
-              <li>Making the time as large as possible without clipping near the curved edges.</li>
-              <li>Adding color options without cluttering the default face.</li>
-              <li>Finding a blank-screen bug that appeared only after installing the optimized build on the watch.</li>
-              <li>Separating sensible optimizations from battery claims I had not measured.</li>
-            </ul>
+            <p>That bug changed how I approached optimization: first satisfy the device’s rendering requirements,
+              then reduce the work needed to prepare each frame.</p>
           </div>
         </section>
 
         <section class="case-section" aria-labelledby="garmin-outcome">
           <span class="case-section-number">05 / Outcome</span>
           <div class="case-section-body">
-            <h2 id="garmin-outcome">It now runs on the watch I wear every day.</h2>
+            <h2 id="garmin-outcome">19 days of battery life.</h2>
             <p class="lead-copy">
-              Typeface 955 now runs on the watch I wear every day. It gives me the three things I check most often. I
-              do not have to open a widget, dismiss anything, or search through extra data.
+              In my comparison, Typeface 955 gives my Forerunner 955 19 days of battery life, compared with 16 days
+              using the closest comparable stock watch face.
             </p>
             <p>
-              I can explain why the code avoids unnecessary formatting and resource work. I have not completed a
-              controlled battery comparison against a stock Garmin face, so I do not claim a measured battery-life
-              improvement. That test is still on my list.
+              These figures describe my watch and use, rather than a guaranteed result for every device. I use the
+              face every day for the time, date, and battery, without opening a widget or searching through extra data.
             </p>
 
-            <div class="learning-grid">
-              <article class="learning-card">
-                <span>CODE</span>
-                <h3>Battery updates arrive as events</h3>
-                <p>The face listens for real battery changes instead of polling for a value that usually stays the same.</p>
-              </article>
-              <article class="learning-card">
-                <span>INTERFACE</span>
-                <h3>Fewer fields made the time larger</h3>
-                <p>Less information gave me more room for the values I actually wanted to read.</p>
-              </article>
-              <article class="learning-card">
-                <span>TESTING</span>
-                <h3>The real watch settled the layout</h3>
-                <p>The simulator was useful, but the watch exposed both layout issues and a blank-screen rendering bug.</p>
-              </article>
-              <article class="learning-card">
-                <span>MEASUREMENT</span>
-                <h3>I still need a battery benchmark</h3>
-                <p>I need a controlled comparison before attaching a number to the battery impact.</p>
-              </article>
-            </div>
           </div>
         </section>
       </div>
@@ -389,7 +370,7 @@ draw(cachedDate, cachedTime, cachedBattery);</code></pre>
     <a class="next-project" href="../bugnut/">
       <span>Next case study</span>
       <strong>Bugnut</strong>
-      <b aria-hidden="true">↗</b>
+      <b aria-hidden="true">→</b>
     </a>
 
     <footer class="site-footer">

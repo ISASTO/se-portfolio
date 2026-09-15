@@ -14,6 +14,11 @@
       content="Three projects built for real use: Movie Master, Typeface 955, and Bugnut."
     />
     <meta property="og:type" content="website" />
+    <link rel="canonical" href="https://isaacstoltz.com/" />
+    <meta property="og:url" content="https://isaacstoltz.com/" />
+    <meta property="og:image" content="https://isaacstoltz.com/assets/images/portfolio-preview.jpg" />
+    <meta property="og:image:alt" content="Isaac Stoltz, software engineering portfolio" />
+    <meta name="twitter:card" content="summary_large_image" />
     <title>Isaac Stoltz | Software Engineering</title>
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
@@ -61,7 +66,7 @@
         <div class="hero-footer" data-reveal>
           <div class="hero-intro">
             <p>University of Minnesota Crookston</p>
-            <p>I build full-stack products, practical tools, and device software around problems I have seen firsthand.</p>
+            <p>I build websites, make comics, and write software for the watch I wear every day.</p>
             <span>Seeking Summer 2027 software engineering internships</span>
           </div>
           <a class="text-link" href="#work">
@@ -82,8 +87,8 @@
         <article class="project project-movie" data-reveal>
           <a class="project-visual" href="projects/movie-master/" aria-label="Read the Movie Master case study">
             <img
-              src="https://raw.githubusercontent.com/ISASTO/movie-master/main/assets/images/social-preview-1200x630.jpg"
-              alt="Movie Master promotional artwork with a suited figure against radiating yellow and red lines"
+              src="assets/images/movie-master-sharecard.jpg"
+              alt="Gold and black Movie Master artwork with Robert’s portrait in an ornate frame"
               width="1200"
               height="630"
               decoding="async"
@@ -94,14 +99,14 @@
           <div class="project-copy">
             <div class="project-meta">
               <span>Full-stack product</span>
-              <span>2024 to present</span>
+              <span>Ongoing</span>
             </div>
             <h3><a href="projects/movie-master/">Movie Master</a></h3>
             <p>
               A live storefront and browser game for an unusual one-person business. I started with a static site,
               then added analytics and public leaderboards when real use called for them.
             </p>
-            <p class="project-proof">Dozens of paid orders · 2 game modes · 25 benchmark scenarios</p>
+            <p class="project-proof">Dozens of paid orders · 2 game modes · 26 benchmark scenarios</p>
             <ul class="tag-list" aria-label="Technologies used">
               <li>JavaScript</li>
               <li>Cloudflare Workers</li>
@@ -109,7 +114,7 @@
               <li>GitHub Pages</li>
             </ul>
             <div class="project-links">
-              <a class="arrow-link" href="projects/movie-master/">Read case study <span aria-hidden="true">↗</span></a>
+              <a class="arrow-link" href="projects/movie-master/">Read case study <span aria-hidden="true">→</span></a>
               <a href="https://moviemaster.vip/" target="_blank" rel="noopener noreferrer">Live site <span class="sr-only">opens in a new tab</span></a>
               <a href="https://github.com/ISASTO/movie-master" target="_blank" rel="noopener noreferrer">Source <span class="sr-only">on GitHub</span> <span class="sr-only">(opens in a new tab)</span></a>
             </div>
@@ -154,15 +159,14 @@
               A distraction-free Garmin watch face I designed for the watch I wear every day. Physical-device testing
               shaped the layout, settings, and rendering strategy.
             </p>
-            <p class="project-proof">260 × 260 display · 5 typefaces · tested on hardware</p>
+            <p class="project-proof">19 days of battery life vs. 16 with the closest stock face, in my comparison.</p>
             <ul class="tag-list" aria-label="Technologies used">
               <li>Monkey C</li>
               <li>Connect IQ</li>
-              <li>Custom resources</li>
-              <li>On-device testing</li>
+              <li>Bitmap fonts</li>
             </ul>
             <div class="project-links">
-              <a class="arrow-link" href="projects/garmin-watch-face/">Read case study <span aria-hidden="true">↗</span></a>
+              <a class="arrow-link" href="projects/garmin-watch-face/">Read case study <span aria-hidden="true">→</span></a>
               <a href="https://github.com/ISASTO/garmin-watchface" target="_blank" rel="noopener noreferrer">Source <span class="sr-only">on GitHub</span> <span class="sr-only">(opens in a new tab)</span></a>
             </div>
           </div>
@@ -171,7 +175,7 @@
         <article class="project project-bugnut" data-reveal>
           <a class="project-visual" href="projects/bugnut/" aria-label="Read the Bugnut case study">
             <img
-              src="https://raw.githubusercontent.com/ISASTO/bugnut-art/main/public/mini-comics-contact-sheet.jpg"
+              src="assets/images/bugnut-covers.jpg"
               alt="Contact sheet showing a collection of hand-drawn Bugnut mini-comic covers"
               width="1666"
               height="1249"
@@ -199,7 +203,7 @@
               <li>Sharp</li>
             </ul>
             <div class="project-links">
-              <a class="arrow-link" href="projects/bugnut/">Read case study <span aria-hidden="true">↗</span></a>
+              <a class="arrow-link" href="projects/bugnut/">Read case study <span aria-hidden="true">→</span></a>
               <a href="https://bugnut.art/" target="_blank" rel="noopener noreferrer">Live site <span class="sr-only">opens in a new tab</span></a>
               <a href="https://github.com/ISASTO/bugnut-art" target="_blank" rel="noopener noreferrer">Source <span class="sr-only">on GitHub</span> <span class="sr-only">(opens in a new tab)</span></a>
             </div>
@@ -215,7 +219,7 @@
 
         <div class="about-copy" data-reveal>
           <h2 id="about-title">
-            I stay with projects after the first version works.
+            About me
           </h2>
           <div class="about-columns">
             <p>
@@ -224,9 +228,8 @@
               a website, a tool I wish existed, or a task I am tired of doing by hand.
             </p>
             <p>
-              What interests me most comes next. I test with real people and real devices, fix the awkward cases, and
-              simplify the next update. That has led me from static pages to backend services, from a simulator to a
-              physical watch, and from a manual publishing checklist to a reusable command-line tool.
+              Outside of software, I draw and publish comics through Bugnut. Building the site gave me a way to combine
+              both interests: I make the artwork, use the publishing tools, and see what needs fixing each time I add a comic.
             </p>
           </div>
         </div>

@@ -29,12 +29,8 @@ async function localTargetExists(htmlFile, target) {
   if (!cleanTarget) return true;
 
   let resolved;
-  if (cleanTarget.startsWith("/se-portfolio/")) {
-    resolved = path.join(projectRoot, cleanTarget.slice("/se-portfolio/".length));
-  } else if (cleanTarget === "/se-portfolio") {
-    resolved = projectRoot;
-  } else if (cleanTarget.startsWith("/")) {
-    return true;
+  if (cleanTarget.startsWith("/")) {
+    resolved = path.join(projectRoot, cleanTarget.slice(1));
   } else {
     resolved = path.resolve(path.dirname(htmlFile), cleanTarget);
   }
