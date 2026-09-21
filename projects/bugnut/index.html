@@ -115,9 +115,9 @@
               through local shops and events, so the site needed a direct path from reading to the shop.
             </p>
             <p>
-              The collection kept growing. Every upload meant sorting and renaming pages, resizing images, making a
-              thumbnail, editing metadata, marking two-page spreads, and checking the finished site. The work was
-              repetitive and gave me several chances to publish a broken page order or stale catalog entry.
+              Resizing and renaming every image was the most annoying part of publishing a comic. Each upload also
+              needed a thumbnail, metadata, spread information, and a check of the finished site. As the collection
+              grew, I wanted the importer to handle that preparation for me.
             </p>
             <p>
               I did not need a full content management system. I needed a tool that understood the folders I already
@@ -211,6 +211,11 @@ npm test</code></pre>
           <span class="case-section-number">04 / Architecture</span>
           <div class="case-section-body">
             <h2 id="bugnut-architecture">The app builds its catalog from the comic folders.</h2>
+            <p>
+              An AI coding assistant recommended Next.js. I specified the publishing workflow around the work I
+              wanted to eliminate, especially resizing and renaming pages. The frontend uses React and TypeScript,
+              with Next.js exporting static files for GitHub Pages.
+            </p>
             <p class="lead-copy">
               Each comic has its own folder with numbered page images and a small <code>comic.json</code> file. The JSON
               contains the title, date, and other details the script cannot learn from an image.
