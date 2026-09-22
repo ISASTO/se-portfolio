@@ -731,6 +731,7 @@ a {
 
 .contact-actions {
   display: flex;
+  flex-wrap: wrap;
   margin-top: 70px;
   align-items: center;
   justify-content: space-between;
