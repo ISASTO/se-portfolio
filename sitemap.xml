@@ -5,6 +5,10 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://isaacstoltz.com/projects/muzikette/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://isaacstoltz.com/projects/movie-master/</loc>
     <priority>0.8</priority>
   </url>
