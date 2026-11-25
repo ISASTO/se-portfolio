@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="How I directed an AI coding agent to build and ship Muzikette, a music library app for Windows, macOS and Linux."
+    />
+    <meta name="theme-color" content="#0a0a0a" />
+    <link rel="canonical" href="https://isaacstoltz.com/projects/muzikette/" />
+    <meta property="og:url" content="https://isaacstoltz.com/projects/muzikette/" />
+    <meta property="og:image" content="https://isaacstoltz.com/assets/images/muzikette-cover.jpg" />
+    <meta property="og:image:alt" content="Muzikette's Albums page in the Silver finish behind its cover page in the Black finish" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:title" content="Muzikette | Isaac Stoltz" />
+    <meta property="og:description" content="How I directed an AI coding agent to build and ship Muzikette, a music library app for Windows, macOS and Linux." />
+    <meta property="og:type" content="website" />
+    <title>Muzikette | Isaac Stoltz</title>
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../styles.css?v=20260922" />
+    <script src="../../script.js?v=20260915" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="case-progress" aria-hidden="true" data-case-progress></div>
+
+    <header class="site-header" data-header>
+      <a class="wordmark" href="../../" aria-label="Isaac Stoltz, home"><span>IS</span></a>
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-navigation"
+        data-nav-toggle
+      >
+        <span class="sr-only">Toggle navigation</span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary" data-nav>
+        <a href="../../#work">Work</a>
+        <a href="../../#about">About</a>
+        <a href="../../assets/Isaac-Stoltz-Resume.pdf?v=20260929" target="_blank" rel="noopener noreferrer">Résumé (PDF) <span class="sr-only">(opens in a new tab)</span></a>
+        <a href="mailto:isaacstoltz2@gmail.com">Email</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <header class="case-hero">
+        <div class="case-kicker" data-reveal>
+          <span>Case study 01</span>
+          <span>Desktop app · September 2026 to present</span>
+        </div>
+        <h1 class="case-title" data-reveal>Muzikette</h1>
+        <div class="case-deck" data-reveal>
+          <div class="case-actions">
+            <a class="case-button primary" href="https://github.com/ISASTO/Muzikette/releases/latest" target="_blank" rel="noopener noreferrer">Download Muzikette <span aria-hidden="true">↗</span> <span class="sr-only">(opens in a new tab)</span></a>
+            <a class="case-button" href="https://github.com/ISASTO/Muzikette" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span> <span class="sr-only">(opens in a new tab)</span></a>
+          </div>
+          <p>
+            A desktop app that keeps a music library in order: covers, artist credits, tags, formats, duplicates and
+            folders. I built it with an AI coding agent and used it to find out how far careful direction can take
+            AI-assisted development. The answer so far is <span data-muzikette="releases">45</span> releases in <span data-muzikette="weeks">7</span> weeks, on Windows, macOS and Linux.
+          </p>
+        </div>
+        <dl class="case-facts" data-reveal>
+          <div>
+            <dt>Role</dt>
+            <dd>Product owner<br />Direction, design, testing</dd>
+          </div>
+          <div>
+            <dt>Core stack</dt>
+            <dd>C#, .NET 10 NativeAOT<br />Avalonia UI</dd>
+          </div>
+          <div>
+            <dt>Built with</dt>
+            <dd>Claude Code<br />GitHub Actions on 3 OSes</dd>
+          </div>
+          <div>
+            <dt>Current scope</dt>
+            <dd><span data-muzikette="releases">45</span> releases, 3 platforms<br />1,285 test assertions</dd>
+          </div>
+        </dl>
+      </header>
+
+      <figure class="case-visual" data-reveal>
+        <img
+          src="../../assets/images/muzikette-cover.jpg"
+          alt="Muzikette's Albums page in the brushed Silver finish, overlapped by its cover search in the Black finish"
+          width="1600"
+          height="1000"
+          decoding="async"
+        />
+        <figcaption>Muzikette in its Silver and Black finishes</figcaption>
+      </figure>
+
+      <div class="case-main">
+
+        <nav class="case-toc" aria-label="Case study sections" data-reveal>
+          <span>Jump to</span>
+          <a href="#muzikette-origin">Origin</a>
+          <a href="#muzikette-ai">Working with AI</a>
+          <a href="#muzikette-design">Design</a>
+          <a href="#muzikette-platforms">Three platforms</a>
+          <a href="#muzikette-evolution">Iteration</a>
+          <a href="#muzikette-outcome">Outcome</a>
+        </nav>
+
+        <section class="case-section" aria-labelledby="muzikette-origin">
+          <span class="case-section-number">01 / Origin</span>
+          <div class="case-section-body">
+            <h2 id="muzikette-origin">It started with my own music folder.</h2>
+            <p class="lead-copy">
+              My library had albums with no cover art, songs credited to whichever guest happened to be on them, and a
+              mix of formats from years of collecting. I wanted one tool that fixed all of it without ever putting a
+              file at risk.
+            </p>
+            <p>
+              The first release, Album Art Tool, did one thing: find albums missing covers and apply new ones, with
+              backups and Undo. Using it on my own library kept showing me the next problem.
+              Version 2 added artist cleanup, MP3 conversion, duplicate removal and folder organization. Version 3
+              rebuilt the app as a native, ahead-of-time compiled program with a GPU-rendered interface. Version 4 gave
+              it a name and an identity.
+            </p>
+            <h3>What the app had to guarantee</h3>
+            <ul>
+              <li>Nothing changes without a preview of exactly what will happen.</li>
+              <li>Originals are backed up before a file is touched, and every change can be undone.</li>
+              <li>Large libraries stay fast, with parallel scans and a cache between launches.</li>
+              <li>It installs and updates like a finished product, with no administrator prompt.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="case-section" aria-labelledby="muzikette-ai">
+          <span class="case-section-number">02 / Working with AI</span>
+          <div class="case-section-body">
+            <h2 id="muzikette-ai">I set the bar. The agent had to prove it met it.</h2>
+            <p class="lead-copy">
+              Muzikette is AI-assisted from the first commit. Claude Code wrote the implementation. I kept the parts of
+              the job that decide whether software is any good: what to build, how it should look and feel, what counts
+              as done, and what is ready to ship.
+            </p>
+
+            <div class="decision-grid">
+              <article class="decision-card">
+                <span>01</span>
+                <h3>Describe outcomes</h3>
+                <p>
+                  My requests read like product notes: make it run on Linux, make the title bar feel like part of the
+                  app, plus a screenshot of an error I hit. The agent turned each one into a plan, code and tests, and
+                  I judged the result on my own library.
+                </p>
+              </article>
+              <article class="decision-card">
+                <span>02</span>
+                <h3>Verify everything</h3>
+                <p>
+                  Every change runs the full suite on Windows, macOS and Linux: real codec round trips, audio integrity
+                  checks and headless checks of every page. CI also captures screenshots of the running app, so the
+                  interface is reviewed visually instead of assumed.
+                </p>
+              </article>
+              <article class="decision-card">
+                <span>03</span>
+                <h3>One release path</h3>
+                <p>
+                  Every version goes through a branch, a pull request, green checks on all three systems, then a
+                  versioned merge whose message becomes the release notes. The in-app updater verifies each download's
+                  SHA-256 checksum and version before installing it.
+                </p>
+              </article>
+              <article class="decision-card">
+                <span>04</span>
+                <h3>Be open about the AI</h3>
+                <p>
+                  Commits credit the AI work. Flathub requires AI-assisted apps to disclose it and does not accept
+                  AI-written packaging, so I ship the Flatpak from GitHub releases instead of working around the rule.
+                </p>
+              </article>
+            </div>
+
+            <div class="request-paths" aria-label="How a Muzikette change ships">
+              <p><strong>I</strong> describe the outcome and the quality bar. <strong>Claude Code</strong> plans the change, implements it and writes its tests.</p>
+              <p><strong>GitHub Actions</strong> tests on Windows, macOS and Linux, launches the packaged app and captures screenshots. <strong>I</strong> try it on my library and decide what comes next.</p>
+            </div>
+
+            <h3>A bug from real use</h3>
+            <p>
+              While using version 4.0, I hit an error dialog that read “Cannot split: requested length 14 consumes
+              entire run.” I sent a screenshot. The cause was inside the UI framework: its text shaper failed when a line
+              break landed inside a font ligature. The fix removed ligature features from the bundled fonts and stopped
+              framework glitches from reaching users as error dialogs. It shipped in 4.1, together with the zoom
+              shortcuts I asked for in the same message.
+            </p>
+          </div>
+        </section>
+
+        <section class="case-section" aria-labelledby="muzikette-design">
+          <span class="case-section-number">03 / Design</span>
+          <div class="case-section-body">
+            <h2 id="muzikette-design">It should feel like hi-fi equipment.</h2>
+            <p class="lead-copy">
+              I wanted the app to look like a piece of audio gear on a shelf, not a settings panel. It comes in a
+              brushed Silver finish and a Black one that follow the system’s light or dark mode. An amber dot-matrix
+              display shows the page, its counts and what is running, and indicator lights mark what needs attention.
+            </p>
+            <figure class="evidence-figure">
+              <img src="../../assets/images/muzikette-albums-silver.jpg" alt="Muzikette's Albums page: a list of albums with cover thumbnails beside the selected album's details, under an amber display reading Albums 15, Tracks 173, No cover 3" width="1320" height="840" loading="lazy" />
+              <figcaption>Albums in the Silver finish. The display counts what needs attention, and the filters put albums missing covers first.</figcaption>
+            </figure>
+            <p>
+              Each page is built around one job and one clear next step. Covers found online can be applied with a
+              click. Artists collapses guest credits into each album’s main artist and shows every track that will
+              change. Organize takes two steps: choose what should change, then review a preview of every file before
+              anything moves.
+            </p>
+            <figure class="evidence-figure">
+              <img src="../../assets/images/muzikette-new-cover-black.jpg" alt="Muzikette's cover page in the Black finish, showing a new album cover ready to apply and two matching covers found on Deezer and MusicBrainz" width="1320" height="840" loading="lazy" />
+              <figcaption>A new cover ready to apply, in the Black finish, with matches found online for the same album.</figcaption>
+            </figure>
+            <h3>Choosing a logo</h3>
+            <p>
+              The original icon was a detailed drawing of the app’s front panel, and it turned to mush at taskbar size.
+              I had four directions mocked up at real sizes, from the macOS Dock down to 16 pixels, on light and dark
+              backgrounds. I picked the simplest one: a silver panel with a tape window and an orange power light. The
+              same light became the dot of the i in the wordmark.
+            </p>
+            <figure class="evidence-figure">
+              <img src="../../assets/images/muzikette-logo-directions.jpg" alt="Four logo directions shown large and at 64, 32 and 16 pixels: amber tape reels, a silver panel with an orange power light, a dot-matrix M, and a white M on an orange key. The power light is marked as shipped." width="1600" height="640" loading="lazy" />
+              <figcaption>The four directions at real sizes. The power light shipped in version 4.4.</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="case-section" aria-labelledby="muzikette-platforms">
+          <span class="case-section-number">04 / Three platforms</span>
+          <div class="case-section-body">
+            <h2 id="muzikette-platforms">Then it had to run everywhere.</h2>
+            <p class="lead-copy">
+              Muzikette started as a Windows app. Over two days it gained a Linux release and a macOS release, and each
+              one was tested on its own operating system before it shipped.
+            </p>
+            <ul>
+              <li><strong>Windows:</strong> a per-user installer, a portable ZIP, a custom title bar that keeps native snapping and window menus, and a verified in-app updater.</li>
+              <li><strong>Linux:</strong> an AppImage that updates itself, a Flatpak bundle and a plain archive, built against an older glibc so it runs on more distributions, and launch-tested in each package.</li>
+              <li><strong>macOS:</strong> one universal app for Apple Silicon and Intel, Command-key shortcuts, a native app menu, Reveal in Finder and trackpad pinch to zoom.</li>
+            </ul>
+            <p>
+              Running on the real systems caught problems that reading the code would not have. On macOS, the temporary
+              folder sits behind a system link, which tripped the app’s own guard against writing through linked
+              folders. The first test run on a Mac found it, and the fix shipped before anyone ran into it.
+            </p>
+            <figure class="evidence-figure">
+              <img src="../../assets/images/muzikette-organize-silver.jpg" alt="Muzikette's Organize page with presets and grouped options for audio, artwork, cleanup, tags, and files and folders, and a Preview changes button" width="1320" height="840" loading="lazy" />
+              <figcaption>Organize: presets and options first, then a preview of every file before anything changes.</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="case-section" aria-labelledby="muzikette-evolution">
+          <span class="case-section-number">05 / Iteration</span>
+          <div class="case-section-body">
+            <h2 id="muzikette-evolution">Each version came from using the last one.</h2>
+            <p>
+              I did not plan the finished app at the start. Each release answered a problem I found by using the
+              previous one on my own library, and most of the <span data-muzikette="releases">45</span> releases shipped within days of the request that
+              prompted them.
+            </p>
+
+            <ol class="timeline">
+              <li>
+                <strong>Album Art Tool 1.0</strong>
+                <span>September 30. Find albums missing covers and apply new ones, with backups and Undo.</span>
+              </li>
+              <li>
+                <strong>Music Library Manager 2.0</strong>
+                <span>November 1. Artist cleanup, MP3 conversion, duplicate removal and Artist / Album folders, all previewed first.</span>
+              </li>
+              <li>
+                <strong>Native rewrite 3.0</strong>
+                <span>November 3. .NET 10 ahead-of-time compiled, a GPU-rendered Avalonia interface, parallel scanning and an installer.</span>
+              </li>
+              <li>
+                <strong>Muzikette 4.0</strong>
+                <span>November 18. A new name and identity, reworked pages, and settings carried over from the old app automatically.</span>
+              </li>
+              <li>
+                <strong>Versions 4.1 to 4.4</strong>
+                <span>November 18 and 19. Zoom, a custom title bar, Linux and macOS releases, and the new logo.</span>
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="case-section" aria-labelledby="muzikette-outcome">
+          <span class="case-section-number">06 / Outcome</span>
+          <div class="case-section-body">
+            <h2 id="muzikette-outcome">What I learned.</h2>
+            <p class="lead-copy">
+              AI made writing the code fast. It did not make the decisions. The work that mattered most was choosing
+              what to build next, defining what done looks like, designing the checks that prove it, and judging the
+              result on a real library.
+            </p>
+            <p>
+              Muzikette is free and open source, with downloads for Windows, macOS and Linux on every release. Its
+              history is public, from the first one-feature version to the cross-platform app it is now, and every
+              release on that list went through the same tested pipeline.
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <a class="next-project" href="../movie-master/">
+      <span>Next case study</span>
+      <strong>Movie Master</strong>
+      <b aria-hidden="true">→</b>
+    </a>
+
+    <footer class="site-footer">
+      <p>© <span data-year>2026</span> Isaac Stoltz</p>
+      <div>
+        <a href="https://github.com/ISASTO" target="_blank" rel="noopener noreferrer">GitHub <span class="sr-only">(opens in a new tab)</span></a>
+        <a href="#main">Back to top ↑</a>
+      </div>
+    </footer>
+  </body>
+</html>
