@@ -1,0 +1,42 @@
+name: Update Muzikette figures
+
+# Once a day (and on demand), counts Muzikette's GitHub releases and updates the figures on the site. A commit made
+# here does not trigger the Pages deploy on its own, so this workflow starts it after pushing.
+on:
+  schedule:
+    - cron: "17 11 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Count releases
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/update-muzikette.mjs
+      - name: Validate site
+        run: npm test
+      - name: Commit and deploy
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet; then
+            echo "Figures are current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Update Muzikette figures"
+          git push
+          gh workflow run pages.yml --ref main
